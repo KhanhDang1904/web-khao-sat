@@ -1,0 +1,5 @@
+name = Quản lý phần mềm tác nghiệp Tân cảng
+core = 7.x
+files[] = quan_ly_tac_nghiep_web.module
+package = ANDIN JSC
+php = 7.0
