@@ -4,8 +4,6 @@ include_once(__DIR__ . '/funcs/user/nguoi_dung.inc');
 include_once(__DIR__ . '/funcs/vai-tro/vai_tro.inc');
 include_once(__DIR__ . '/funcs/phan-quyen/phan_quyen.inc');
 include_once(__DIR__ . '/funcs/tong-quan/tong-quan.inc');
-include_once(__DIR__ . '/funcs/don_hang.inc');
-include_once(__DIR__ . '/funcs/san_pham.inc');
 include("includes/password.inc");
 
 
@@ -113,144 +111,12 @@ function quan_ly_tac_nghiep_web_menu()
     'access callback' => 'user_access',
     'access arguments' => array('save_logo_permission'),
   );
-  $items['save-don-hang'] = array( //this creates a URL that will call this form at "examples/form-example"
-    'title' => 'Lưu đơn',
-    'delivery callback' => 'save_don_hang',
-    'access callback' => 'user_access',
-    'access arguments' => array('save_don_hang_permission'),
-  );
-  $items['xem-don-hang'] = array( //this creates a URL that will call this form at "examples/form-example"
-    'title' => 'Xem đơn',
-    'delivery callback' => 'xem_don_hang',
-    'access callback' => 'user_access',
-    'access arguments' => array('xem_don_hang_permission'),
-  );
-  $items['load-don-hang'] = array( //this creates a URL that will call this form at "examples/form-example"
-    'title' => 'Sửa đơn',
-    'delivery callback' => 'load_don_hang',
-    'access callback' => 'user_access',
-    'access arguments' => array('load_don_hang_permission'),
-  );
-  $items['load-trang-thai'] = array( //this creates a URL that will call this form at "examples/form-example"
-    'title' => 'Cập nhật trạng thái đơn',
-    'delivery callback' => 'load_trang_thai',
-    'access callback' => 'user_access',
-    'access arguments' => array('load_trang_thai_permission'),
-  );
-  $items['xoa-don-hang'] = array( //this creates a URL that will call this form at "examples/form-example"
-    'title' => 'Sửa đơn',
-    'delivery callback' => 'xoa_don_hang',
-    'access callback' => 'user_access',
-    'access arguments' => array('xoa_don_hang_permission'),
-  );
-  $items['save-trang-thai'] = array( //this creates a URL that will call this form at "examples/form-example"
-    'title' => 'Lưu trạng thái',
-    'delivery callback' => 'save_trang_thai',
-    'access callback' => 'user_access',
-    'access arguments' => array('save_trang_thai_permission'),
-  );
   $items['he-thong'] = array( //this creates a URL that will call this form at "examples/form-example"
     'title' => 'Hệ thống',
     'page callback' => 'he_thong',
     'page arguments' => array('he_thong_permission'),
     'access arguments' => array('he_thong_permission'),
   );
-  $items['get-khach-hang'] = array( //this creates a URL that will call this form at "examples/form-example"
-    'title' => 'Lấy thông tin khách hàng',
-    'page callback' => 'get_khach_hang',
-    'page arguments' => array('get_khach_hang_permission'),
-    'access arguments' => array('get_khach_hang_permission'),
-  );
-  $items['load-khach-hang'] = array( //this creates a URL that will call this form at "examples/form-example"
-    'title' => 'Lấy thông tin đơn hàng bởi khách hàng',
-    'page callback' => 'load_khach_hang',
-    'page arguments' => array('load_khach_hang_permission'),
-    'access arguments' => array('load_khach_hang_permission'),
-  );
-  $items['save-trang-thai-thanh-toan'] = array( //this creates a URL that will call this form at "examples/form-example"
-    'title' => 'Lưu thông tin thanh toán',
-    'page callback' => 'save_trang_thai_thanh_toan',
-    'page arguments' => array('save_trang_thai_thanh_toan_permission'),
-    'access arguments' => array('save_trang_thai_thanh_toan_permission'),
-  );
-  $items['load-mau-in'] = array( //this creates a URL that will call this form at "examples/form-example"
-    'title' => 'Load mẫu in',
-    'page callback' => 'load_mau_in',
-    'page arguments' => array('load_mau_in_toan_permission'),
-    'access arguments' => array('load_mau_in_toan_permission'),
-  );
-  $items['save-mau-in'] = [
-    'title' => 'Lưu mẫu in thu chi',
-    'delivery callback' => 'save_mau_in',
-    'access callback' => 'user_access',
-    'access_arguments' => ['save_mau_in_permission'],
-  ];
-  $items['save-san-pham'] = [
-    'title' => 'Thêm sản phẩm',
-    'delivery callback' => 'save_san_pham',
-    'access callback' => 'user_access',
-    'access_arguments' => ['save_san_pham_permission'],
-  ];
-  $items['load-san-pham'] = [
-    'title' => 'Sửa sản phẩm',
-    'delivery callback' => 'load_san_pham',
-    'access callback' => 'user_access',
-    'access_arguments' => ['sua_san_pham_permission'],
-  ];
-  $items['active-san-pham'] = [
-    'title' => 'Bật tắt sản phẩm',
-    'delivery callback' => 'active_san_pham',
-    'access callback' => 'user_access',
-    'access_arguments' => ['active_san_pham_permission'],
-  ];
-  $items['load-diem'] = [
-    'title' => 'Hiển thị điểm',
-    'delivery callback' => 'load_diem',
-    'access callback' => 'user_access',
-    'access_arguments' => ['load_diem_permission'],
-  ];
-  $items['save-doi-diem'] = [
-    'title' => 'Lưu đổi điểm',
-    'delivery callback' => 'save_doi_diem',
-    'access callback' => 'user_access',
-    'access_arguments' => ['save_doi_diem_permission'],
-  ];
-  $items['lich-su-doi-diem'] = [
-    'title' => 'Lịch sử đổi điểm',
-    'delivery callback' => 'lich_su_doi_diem',
-    'access callback' => 'user_access',
-    'access_arguments' => ['lich_su_doi_diem_permission'],
-  ];
-  $items['get-cuoc-dan'] = [
-    'title' => 'danh sách cước đan',
-    'delivery callback' => 'get_cuoc_dan',
-    'access callback' => 'user_access',
-    'access_arguments' => ['get_cuoc_dan_permission'],
-  ];
-  $items['gioi-thieu'] = [
-    'title' => 'Giới thiệu',
-    'page callback' => 'gioi_thieu',
-    'page arguments' => array('gioi_thieu_permission'),
-    'access arguments' => array('gioi_thieu_permission'),
-  ];
-  $items['ket-qua'] = [
-    'title' => 'Danh sách liên hệ',
-    'page callback' => 'ket_qua',
-    'page arguments' => array('ket_qua_permission'),
-    'access arguments' => array('ket_qua_permission'),
-  ];
-  $items['lien-he'] = [
-    'title' => 'Liên hệ',
-    'page callback' => 'lien_he',
-    'page arguments' => array('lien_he_permission'),
-    'access arguments' => array('lien_he_permission'),
-  ];
-  $items['chi-tiet-san-pham'] = [
-    'title' => 'Chi tiết sản phẩm',
-    'page callback' => 'chi_tiet_san_pham',
-    'page arguments' => array('chi_tiet_san_pham_permission'),
-    'access arguments' => array('chi_tiet_san_pham_permission'),
-  ];
   return $items;
 }
 
@@ -317,74 +183,8 @@ function quan_ly_tac_nghiep_web_permission()
     'danh_muc_permission' => [
       'title' => 'Danh sách danh mục',
     ],
-    'save_don_hang_permission' => [
-      'title' => 'Tạo đơn hàng',
-    ],
-    'xem_don_hang_permission' => [
-      'title' => 'Xem đơn hàng',
-    ],
-    'load_don_hang_permission' => [
-      'title' => 'Sửa đơn hàng',
-    ],
-    'xoa_don_hang_permission' => [
-      'title' => 'Xóa đơn hàng',
-    ],
-    'load_trang_thai_permission' => [
-      'title' => 'Xem trạng thái  đơn hàng',
-    ],
-    'save_trang_thai_permission' => [
-      'title' => 'Lưu trạng thái',
-    ],
     'he_thong_permission' => [
       'title' => 'Hệ thống',
-    ],
-    'get_khach_hang_permission' => [
-      'title' => 'Lấy thông tin khách hàng',
-    ],
-    'load_khach_hang_permission' => [
-      'title' => 'Lấy thông tin đơn hàng bởi khách hàng',
-    ],
-    'load_mau_in_toan_permission' => [
-      'title' => 'In phiếu',
-    ],
-    'save_mau_in_permission' => [
-      'title' => 'Lưu mẫu in',
-    ],
-    'save_trang_thai_thanh_toan_permission' => [
-      'title' => 'Lưu trạng thái thanh toán',
-    ],
-    'save_san_pham_permission' => [
-      'title' => 'Lưu sản phẩm',
-    ],
-    'load_san_pham_permission' => [
-      'title' => 'Sửa sản phẩm',
-    ],
-    'active_san_pham_permission' => [
-      'title' => 'Bật tắt sản phẩm',
-    ],
-    'load_diem_permission' => [
-      'title' => 'Hiển thị điểm',
-    ],
-    'save_doi_diem_permission' => [
-      'title' => 'Lưu đổi điểm',
-    ],
-    'lich_su_doi_diem_permission' => [
-      'title' => 'Lịch sử đổi điểm',
-    ],
-    'get_cuoc_dan_permission' => [
-      'title' => 'Danh sách cước đan',
-    ],
-    'gioi_thieu_permission' => [
-      'title' => 'Giới thiệu',
-    ],
-    'lien_he_permission' => [
-      'title' => 'Liên hệ',
-    ],
-    'chi_tiet_san_pham_permission' => [
-      'title' => 'Chi tiết sản phẩm',
-    ],
-    'ket_qua_permission' => [
-      'title' => 'Danh sách kết quả',
     ],
   ];
 }
@@ -435,3 +235,46 @@ function ket_qua() {
     '#type' => 'markup',
   ];
 }
+function getCountry(){
+  $curl = curl_init();
+
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://countriesnow.space/api/v0.1/countries/population',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'GET',
+  ));
+
+  $response = curl_exec($curl);
+  $data = isset((json_decode($response))->data)?(json_decode($response))->data:[];
+  curl_close($curl);
+  return $data;
+}
+function quan_ly_tac_nghiep_web_user_presave(&$edit, $account, $category)
+{
+  if (isset($account->is_new) && !empty($account->is_new)) {
+    if (isset($edit['roles'])) {
+      $edit['roles'] = [
+        2 => 'authenticated user',
+        8 => 'my custom role',
+      ];
+    }
+  }
+}
+function getListImage(){
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', "banner")
+    ->propertyOrderBy('nid', 'DESC');
+  $query->fieldCondition('field_hoat_dong','value',1);
+  $results = $query->execute();
+  $nids = array_keys($results['node']);
+  return [
+    'data' => node_load_multiple($nids),
+  ];
+}
+

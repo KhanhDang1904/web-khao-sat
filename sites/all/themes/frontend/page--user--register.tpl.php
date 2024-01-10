@@ -71,9 +71,10 @@
  * @ingroup themeable
  */
 ?>
-<div class="hidden">
-  <?php if ($page['content']) print render($page['content']) ?>
+<div class="">
+  <?php if($page['content']) print render($page['content'])?>
 </div>
+
 <!-- BEGIN: Content-->
 <div class="app-content content ">
   <div class="content-overlay"></div>
@@ -90,55 +91,88 @@
             <span>
             <img src="https://<?= $_SERVER['SERVER_NAME'] ?>/<?= $node->field_ghi_chu['und'][0]['value'] ?>"/>
           </span>
-            <h2 class="brand-text text-primary ms-1">Phần mềm quản lý khảo sát CSTAKA </h2>
+            <h2 class="brand-text text-primary ms-1"> CSTAKA </h2>
           </a>
           <!-- /Brand logo-->
           <!-- Left Text-->
           <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
-            <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
-              <img class="img-fluid"
-                   src="https://<?= $_SERVER['SERVER_NAME'] ?>/sites/all/themes/frontend/app-assets/images/pages/login-v2.svg"
-                   alt="Đăng nhập 2"/>
-            </div>
+            <div class="w-100 d-lg-flex align-items-center justify-content-center px-5"><img class="img-fluid" src="https://<?= $_SERVER['SERVER_NAME'] ?>/sites/all/themes/frontend/app-assets/images/pages/register-v2.svg" alt="Register V2" /></div>
           </div>
           <!-- /Left Text-->
-          <!-- Login-->
-          <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
-            <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-              <h2 class="card-title fw-bold mb-1">Đăng nhập! 👋</h2>
-              <p class="card-text mb-2">Vui lòng điền tên đăng nhập và mật khẩu vào ô dưới</p>
-              <dic class="">
+          <!-- Register-->
+          <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5 zindex-1">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto mt-lg-1">
+              <h2 class="card-title fw-bold mb-1">Đăng kí 🚀</h2>
+              <p class="card-text mb-2">Vui lòng điền thông tin để đăng kí!</p>
+              <div class="">
                 <?php print $messages; ?>
-              </dic>
-              <form class="auth-login-form mt-2" action="<?= $front_page ?>" method="POST">
+              </div>
+              <form class="auth-register-form mt-2" action="/user/register" method="POST">
                 <div class="mb-1">
-                  <label class="form-label" for="login-email">Tên đăng nhập</label>
-                  <input class="form-control" id="login-email" type="text" name="login-email" placeholder="admin"
-                         aria-describedby="login-email" autofocus="" tabindex="1"/>
+                  <label class="form-label" for="register-name">Họ tên</label>
+                  <input class="form-control" id="register-name" type="text" name="register-name" placeholder="Họ tên" aria-describedby="register-name" autofocus="" tabindex="1" />
                 </div>
                 <div class="mb-1">
-                  <div class="d-flex justify-content-between">
-                    <label class="form-label" for="login-password">Mật khẩu</label>
+                  <label class="form-label" for="login-country">Đất nước</label>
+                  <div class="position-relative">
+                    <select class="select2" id="register-country">
+                      <option value="">--Chọn--</option>
+                      <?php $country = getCountry();
+                      if (count($country) > 0): ?>
+                        <?php foreach ($country as $item): ?>
+                          <option value="<?=$item->country?>"><?=$item->country?></option>
+                        <?php endforeach; ?>
+                      <?php endif; ?>
+                    </select>
                   </div>
+                </div>
+                <div class="mb-1">
+                  <label class="form-label" for="register-email">Email</label>
+                  <input class="form-control" id="register-email" type="text" name="register-email" placeholder="john@example.com" aria-describedby="register-email" tabindex="2" />
+                </div>
+                <div class="mb-1">
+                  <label class="form-label" for="register-password">Password</label>
                   <div class="input-group input-group-merge form-password-toggle">
-                    <input class="form-control form-control-merge" id="login-password" type="password"
-                           name="login-password" placeholder="············" aria-describedby="login-password"
-                           tabindex="2"/>
-                    <span class="input-group-text btn-pass cursor-pointer">
-                      <i data-feather="eye"></i>
-                    </span>
+                    <input class="form-control form-control-merge" id="register-password" type="password" name="register-password" placeholder="············" aria-describedby="register-password" tabindex="3" /><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                   </div>
                 </div>
-                <a href="#" class="btn btn-primary w-100" tabindex="4" id="btn-dang-nhap">Đăng nhập</a>
-                <p class="text-center mt-2"><span>Bạn chưa có tài khoản?</span><a href="/user/register"><span>&nbsp;Tạo tài khoản mới</span></a>
-                </p>
+
+<!--                <div class="mb-1">-->
+<!--                  <div class="form-check">-->
+<!--                    <input class="form-check-input" id="register-privacy-policy" type="checkbox" tabindex="4" />-->
+<!--                    <label class="form-check-label" for="register-privacy-policy">Tôi đồng ý với <a href="#">chính sách và điều khoản bảo mật</a></label>-->
+<!--                  </div>-->
+<!--                </div>-->
+                <button class="btn btn-primary w-100 btn-dang-ky" type="button" tabindex="5">Đăng kí</button>
               </form>
-            </div>
+              <p class="text-center mt-2"><span>Quay lại?</span><a href="/user/login"><span>&nbsp;Đăng nhập</span></a></p>
+              </div>
           </div>
-          <!-- /Login-->
+          <!-- /Register-->
         </div>
       </div>
     </div>
   </div>
 </div>
+<script>
+  $('.form-password-toggle .input-group-text').on('click', function (e) {
+    e.preventDefault();
+    var $this = $(this),
+      inputGroupText = $this.closest('.form-password-toggle'),
+      formPasswordToggleIcon = $this,
+      formPasswordToggleInput = inputGroupText.find('input');
+
+    if (formPasswordToggleInput.attr('type') === 'text') {
+      formPasswordToggleInput.attr('type', 'password');
+      if (feather) {
+        formPasswordToggleIcon.find('svg').replaceWith(feather.icons['eye'].toSvg({ class: 'font-small-4' }));
+      }
+    } else if (formPasswordToggleInput.attr('type') === 'password') {
+      formPasswordToggleInput.attr('type', 'text');
+      if (feather) {
+        formPasswordToggleIcon.find('svg').replaceWith(feather.icons['eye-off'].toSvg({ class: 'font-small-4' }));
+      }
+    }
+  });
+</script>
 <!-- END: Content-->

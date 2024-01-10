@@ -11,6 +11,11 @@ function frontend_preprocess_html(&$variables)
     drupal_add_css($theme_path . '/app-assets/css/pages/authentication.css', array('group' => CSS_THEME, 'media' => 'all', 'weight' => -999));
     drupal_add_js($theme_path . '/app-assets/vendors/js/forms/validation/jquery.validate.min.js', array('group' => JS_THEME, 'media' => 'all', 'weight' => -999));
     drupal_add_js($theme_path . '/app-assets/js/scripts/pages/auth-login.js', array('group' => JS_THEME, 'media' => 'all', 'weight' => -999));
+  }else
+  if(current_path() == 'user/register'){
+    drupal_add_css($theme_path . '/app-assets/css/pages/authentication.css', array('group' => CSS_THEME, 'media' => 'all', 'weight' => -999));
+    drupal_add_js($theme_path . '/app-assets/vendors/js/forms/validation/jquery.validate.min.js', array('group' => JS_THEME, 'media' => 'all', 'weight' => -999));
+    drupal_add_js($theme_path . '/app-assets/js/scripts/pages/auth-register.js', array('group' => JS_THEME, 'media' => 'all', 'weight' => -999));
   }
   else if(current_path() == 'nguoi-dung'){
     drupal_add_js($theme_path . '/app-assets/js/core/chuc-nang/user.js', array('group' => JS_THEME));

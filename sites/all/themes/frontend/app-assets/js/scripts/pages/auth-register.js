@@ -6,7 +6,45 @@
   Author: PIXINVENT
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
-
+$(document).ready(function (){
+  $(document).on("click",'.btn-dang-ky',function (){
+    if ($("#register-name").val()==""){
+      toastError("Vui lòng nhập họ tên")
+      return false
+    }
+    if ($("#register-country").val()==""){
+      toastError("Vui lòng chọn đất nước")
+      return false
+    }
+    if ($("#register-email").val()==""){
+      toastError("Vui lòng nhập email")
+      return false
+    }
+    if (!validateEmail($("#register-email").val())){
+      toastError("Email không đúng định dạng")
+      return false
+    }
+    if ($("#register-password").val()==""){
+      toastError("Vui lòng nhập password")
+      return false
+    }
+    if ($("#register-password").val().length<6){
+      toastError("Mật khẩu tối thiểu 6 kí tự ")
+      return false
+    }
+    $("#edit-field-ho-ten-und-0-value").val($("#register-name").val())
+    $("#edit-field-dat-nuoc-und-0-value").val($("#register-country").val())
+    $("#edit-name").val($("#register-email").val())
+    $("#edit-mail").val($("#register-email").val())
+    $("#edit-pass-pass1").val($("#register-password").val())
+    $("#edit-pass-pass2").val($("#register-password").val())
+    $("#edit-submit").click()
+  })
+})
+function validateEmail($email) {
+  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  return emailReg.test( $email );
+}
 $(function () {
   ('use strict');
 
