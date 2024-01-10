@@ -90,7 +90,7 @@
           <span >
             <img src="https://<?=$_SERVER['SERVER_NAME'] ?>/<?=$node->field_ghi_chu['und'][0]['value']?>"/>
           </span>
-          <h2 class="brand-text text-primary ms-1">Phần mềm quản lý khảo sát </h2>
+          <h2 class="brand-text text-primary ms-1">Phần mềm quản lý khảo sát CSTAKA </h2>
           </a>
           <!-- /Brand logo-->
           <!-- Left Text-->
@@ -116,9 +116,6 @@
                 <div class="mb-1">
                   <div class="d-flex justify-content-between">
                     <label class="form-label" for="login-password">Mật khẩu</label>
-<!--                    <a href="--><?php //=url('user/password')?><!--">-->
-<!--                      <small>Quên mật khẩu?</small>-->
-<!--                    </a>-->
                   </div>
                   <div class="input-group input-group-merge form-password-toggle">
                     <input class="form-control form-control-merge" id="login-password" type="password" name="login-password" placeholder="············" aria-describedby="login-password" tabindex="2" />
@@ -128,6 +125,7 @@
                   </div>
                 </div>
                 <a href="#" class="btn btn-primary w-100" tabindex="4" id="btn-dang-nhap">Đăng nhập</a>
+                <p class="text-center mt-2"><span>Bạn chưa có tài khoản?</span><a href="/user/register"><span>&nbsp;Tạo tài khoản mới</span></a></p>
               </form>
             </div>
           </div>
