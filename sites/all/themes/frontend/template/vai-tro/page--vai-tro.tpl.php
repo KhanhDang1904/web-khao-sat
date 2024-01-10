@@ -150,13 +150,25 @@ global $user;
       </ul>
     </div>
     <ul class="nav navbar-nav align-items-center ms-auto">
-      <li class="scrollable-container media-list">
-        <?php
-        module_load_include('inc', 'webform', 'includes/webform.submissions');
-        $submissions = webform_get_submissions(array('nid'=> 26686), null,5);
-        array_multisort($submissions,SORT_DESC);
-        foreach ($submissions as $submission){
-          print ' <a class="d-flex" href="/ket-qua">
+      <li class="nav-item dropdown dropdown-notification me-25">
+        <a class="nav-link" href="#" data-bs-toggle="dropdown">
+          <i class="ficon" data-feather="bell"></i>
+          <span class="badge rounded-pill bg-danger badge-up">5</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
+          <li class="dropdown-menu-header">
+            <div class="dropdown-header d-flex">
+              <h4 class="notification-title mb-0 me-auto">Thông báo</h4>
+              <div class="badge rounded-pill badge-light-primary">6 Thông báo mới</div>
+            </div>
+          </li>
+          <li class="scrollable-container media-list">
+            <?php
+            module_load_include('inc', 'webform', 'includes/webform.submissions');
+            $submissions = webform_get_submissions(array('nid'=> 26686), null,5);
+            array_multisort($submissions,SORT_DESC);
+            foreach ($submissions as $submission){
+              print ' <a class="d-flex" href="/ket-qua">
             <div class="list-item d-flex align-items-start">
               <div class="me-1">
                 <div class="avatar bg-light-warning">
@@ -172,8 +184,11 @@ global $user;
               </div>
             </div>
           </a>';
-        }
-        ?>
+            }
+            ?>
+          </li>
+          <li class="dropdown-menu-footer"><a class="btn btn-primary w-100" href="/ket-qua">Xem tất cả</a></li>
+        </ul>
       </li>
       <li class="nav-item dropdown dropdown-user">
         <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="#" data-bs-toggle="dropdown"

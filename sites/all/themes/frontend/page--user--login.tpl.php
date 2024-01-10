@@ -90,7 +90,7 @@
           <span >
             <img src="https://<?=$_SERVER['SERVER_NAME'] ?>/<?=$node->field_ghi_chu['und'][0]['value']?>"/>
           </span>
-          <h2 class="brand-text text-primary ms-1">Phần mềm quản lý hàng</h2>
+          <h2 class="brand-text text-primary ms-1">Phần mềm quản lý khảo sát </h2>
           </a>
           <!-- /Brand logo-->
           <!-- Left Text-->
@@ -116,9 +116,9 @@
                 <div class="mb-1">
                   <div class="d-flex justify-content-between">
                     <label class="form-label" for="login-password">Mật khẩu</label>
-                    <a href="<?=url('user/password')?>">
-                      <small>Quên mật khẩu?</small>
-                    </a>
+<!--                    <a href="--><?php //=url('user/password')?><!--">-->
+<!--                      <small>Quên mật khẩu?</small>-->
+<!--                    </a>-->
                   </div>
                   <div class="input-group input-group-merge form-password-toggle">
                     <input class="form-control form-control-merge" id="login-password" type="password" name="login-password" placeholder="············" aria-describedby="login-password" tabindex="2" />

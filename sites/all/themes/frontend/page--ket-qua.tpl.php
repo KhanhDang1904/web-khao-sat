@@ -95,9 +95,6 @@ global $user;
       </ul>
     </div>
     <ul class="nav navbar-nav align-items-center ms-auto">
-      <?php if (isset($user->roles[4])):?>
-        <a class="btn btn-primary" href="/view-don-hang"><i data-feather='tv'></i></a>
-      <?php endif;?>
       <li class="nav-item dropdown dropdown-notification me-25">
         <a class="nav-link" href="#" data-bs-toggle="dropdown">
           <i class="ficon" data-feather="bell"></i>

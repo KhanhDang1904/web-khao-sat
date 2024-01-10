@@ -72,12 +72,6 @@
  */
 
 global $user;
-if ($user->uid != 0) {
-  if (isset($user->roles[8]))
-  header('location: /tra-cuu-don');
-  else
-    header('location: /don-hang?title=&field_trang_thanh_toan_value=All&field_ngay_nhan_value_tu%5Bvalue%5D%5Bdate%5D='.date("m/d/Y",strtotime(date('Y-m-d')." - 1 day")).'&field_ngay_nhan_value_den%5Bvalue%5D%5Bdate%5D='.date("m/d/Y",strtotime(date('Y-m-d')." + 1 day")));
-}
 ?>
 <!-- BEGIN: Header-->
 <nav
@@ -91,7 +85,7 @@ if ($user->uid != 0) {
           <span class="brand-logo">
             <img src="<?= $node->field_ghi_chu['und'][0]['value'] ?>"/>
           </span>
-          <h2 class="brand-text mb-0">CHUYÊN TRANG ĐAN VỢT CẦU LÔNG CỦA SHOP VNB GIA lAI</h2>
+          <h2 class="brand-text mb-0">Tổng quan</h2>
         </a>
       </li>
     </ul>
@@ -188,7 +182,7 @@ if ($user->uid != 0) {
               <div class="carousel-inner" role="listbox">
                 <?php $count = 0; foreach (getListImage()['data']  as $index =>$item):?>
                 <div class="carousel-item <?=$count++==0?"active":""?>">
-                  <img class="img-fluid" src="/images/<?=$item->field_image['und'][0]['filename']?>" />
+                  <img class="img-fluid" src="/sites/default/files/images/<?=$item->field_image['und'][0]['filename']?>" />
                 </div>
                 <?php endforeach;?>
               </div>
