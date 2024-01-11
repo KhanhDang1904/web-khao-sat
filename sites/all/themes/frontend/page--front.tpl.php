@@ -114,13 +114,27 @@ global $user;
             <span class="avatar-status-online"></span>
           </span>
         </a>
-        <div class="dropdown-menu dropdown-menu-end"
-             aria-labelledby="dropdown-user">
-          <a class="dropdown-item" href="/user/login">
-            <i class="me-50" data-feather="user"></i> Đăng nhập
-          </a>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
+          <?php
+          global $user;
+          if (!isset($user->roles[8])&&$user->uid !== 0):
+            ?>
+            <a class="dropdown-item" href="/ho-so-ca-nhan">
+              <i class="me-50" data-feather="user"></i> Hồ sơ cá nhân
+            </a>
+          <?php endif;?>
           <div class="dropdown-divider"></div>
+          <?php if ($user->uid==0):?>
+            <a class="dropdown-item" href="<?=url('user/login')?>">
+              <i class="me-50" data-feather="user"></i> Đăng nhập
+            </a>
+          <?php else:?>
+            <a class="dropdown-item" href="<?=url('user/logout')?>">
+              <i class="me-50" data-feather="power"></i> Đăng xuất
+            </a>
+          <?php endif;?>
         </div>
+
       </li>
     </ul>
   </div>

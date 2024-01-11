@@ -83,7 +83,7 @@ global $user;
           <span class="brand-logo">
             <img src="<?=$node->field_ghi_chu['und'][0]['value']?>"/>
           </span>
-            <h2 class="brand-text text-primary ms-1"></h2>
+            <h2 class="brand-text text-primary ms-1">CSTAKA</h2>
         </a>
       </li>
     </ul>
@@ -191,7 +191,7 @@ global $user;
             <span class="brand-logo">
             <img src="<?=$node->field_ghi_chu['und'][0]['value']?>"/>
           </span>
-            <h2 class="brand-text mb-0"></h2>
+            <h2 class="brand-text mb-0">CSTAKA</h2>
           </a>
         </li>
         <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i></a></li>

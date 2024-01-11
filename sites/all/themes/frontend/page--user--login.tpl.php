@@ -103,7 +103,7 @@
           </div>
           <!-- /Left Text-->
           <!-- Login-->
-          <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
+          <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5 zindex-1">
             <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
               <h2 class="card-title fw-bold mb-1">Đăng nhập! 👋</h2>
               <p class="card-text mb-2">Vui lòng điền tên đăng nhập và mật khẩu vào ô dưới</p>
