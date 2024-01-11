@@ -117,6 +117,12 @@ function quan_ly_tac_nghiep_web_menu()
     'page arguments' => array('he_thong_permission'),
     'access arguments' => array('he_thong_permission'),
   );
+  $items['khao-sat'] = array( //this creates a URL that will call this form at "examples/form-example"
+    'title' => 'Khảo sát',
+    'page callback' => 'khao_sat',
+    'page arguments' => array('khao_sat_permission'),
+    'access arguments' => array('khao_sat_permission'),
+  );
   return $items;
 }
 
@@ -186,6 +192,9 @@ function quan_ly_tac_nghiep_web_permission()
     'he_thong_permission' => [
       'title' => 'Hệ thống',
     ],
+    '' => [
+      'title' => 'Khảo sát',
+    ],
   ];
 }
 
@@ -226,6 +235,11 @@ function lien_he() {
   ];
 }
 function chi_tiet_san_pham() {
+  return [
+    '#type' => 'markup',
+  ];
+}
+function khao_sat() {
   return [
     '#type' => 'markup',
   ];
@@ -277,4 +291,15 @@ function getListImage(){
     'data' => node_load_multiple($nids),
   ];
 }
-
+function getListKhaoSat(){
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', "cau_hoi")
+    ->propertyOrderBy('nid', 'DESC');
+  $query->fieldCondition('field_hoat_dong','value',1);
+  $results = $query->execute();
+  $nids = array_keys($results['node']);
+  return [
+    'data' => node_load_multiple($nids),
+  ];
+}

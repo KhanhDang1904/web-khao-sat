@@ -85,7 +85,7 @@ global $user;
           <span class="brand-logo">
             <img src="<?= $node->field_ghi_chu['und'][0]['value'] ?>"/>
           </span>
-          <h2 class="brand-text mb-0">Tổng quan</h2>
+          <h2 class="brand-text mb-0">CSTAKA</h2>
         </a>
       </li>
     </ul>
@@ -150,7 +150,7 @@ global $user;
             <span class="brand-logo">
             <img src="<?= $node->field_ghi_chu['und'][0]['value'] ?>"/>
             </span>
-            <h2 class="brand-text mb-0">VNB Gia Lai</h2>
+            <h2 class="brand-text mb-0">CSTAKA</h2>
           </a>
         </li>
         <li class="nav-item nav-toggle"><a
@@ -168,11 +168,12 @@ global $user;
 </div>
 <!-- END: Main Menu-->
 <div class="app-content content ">
-  <div class="card">
-    <div class="card-body">
-      <form action="/">
-        <div class="row">
-          <div class="col-md-8">
+
+  <form action="/">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
             <div id="carousel-interval" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
               <ol class="carousel-indicators">
                 <li data-bs-target="#carousel-interval" data-bs-slide-to="0" class="active"></li>
@@ -180,11 +181,14 @@ global $user;
                 <li data-bs-target="#carousel-interval" data-bs-slide-to="2"></li>
               </ol>
               <div class="carousel-inner" role="listbox">
-                <?php $count = 0; foreach (getListImage()['data']  as $index =>$item):?>
-                <div class="carousel-item <?=$count++==0?"active":""?>">
-                  <img class="img-fluid" src="/sites/default/files/images/<?=$item->field_image['und'][0]['filename']?>" />
-                </div>
-                <?php endforeach;?>
+                <?php $count = 0;
+                foreach (getListImage()['data'] as $index => $item): ?>
+                  <div class="carousel-item <?= $count++ == 0 ? "active" : "" ?>">
+                    <img class="img-fluid"
+                         src="/sites/default/files/images/<?= $item->field_image['und'][0]['filename'] ?>"
+                         style="max-height: 350px!important;"/>
+                  </div>
+                <?php endforeach; ?>
               </div>
               <a class="carousel-control-prev" data-bs-target="#carousel-interval" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -196,101 +200,41 @@ global $user;
               </a>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="row">
-              <div class="col-md-12">
-                <input class="form-control mt-1" name="title" placeholder="Tìm kiếm mã khách hàng ..."
-                       value="<?= isset($_GET['title']) ? $_GET['title'] : "" ?>">
-              </div>
-              <div class="col-md-12">
-                <button class="btn btn-success col-12 mt-1" type="submit"><i data-feather='search'></i> Tìm kiếm</button>
-              </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h4>KHẢO SÁT</h4>
+            <div class="accordion accordion-margin" id="accordionMargin">
+              <?php $list = getListKhaoSat()['data'] ?>
+              <?php if (count($list) > 0): ?>
+                <?php foreach ($list as $index=>$item): ?>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingMarginOne">
+                      <button  class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionMarginOne<?=$index?>" aria-expanded="false" aria-controls="accordionMarginOne<?=$index?>">
+                        <?=$item->title?>
+                      </button>
+                    </h2>
+                    <div id="accordionMarginOne<?=$index?>" class="accordion-collapse collapse" aria-labelledby="headingMarginOne"
+                         data-bs-parent="#accordionMargin">
+                      <div class="accordion-body text-center">
+                         <p>Bắt đầu khảo sát : <?=$item->title?></p>
+                        <a class="btn btn-primary" href="/khao-sat?nid=<?=$item->nid?>">Bắt đầu</a>
+
+                      </div>
+                    </div>
+                  </div>
+                <?php endforeach; ?>
+              <?php else: ?>
             </div>
-            <div class="col-12  mt-1">
-              <span class="text-danger"><i>* Vui lòng nhập mã khách hàng, để xem thông tin chi tiết</i></span>
-            </div>
+            <div class="alert alert-warning p-1">Hiện đang không có khảo sát!</div>
+            <?php endif; ?>
           </div>
         </div>
-
-      </form>
-
-    </div>
-  </div>
-  <?php if (isset($_GET['title'])): ?>
-    <div class="card mt-1">
-      <div class="card-body">
-        <?php $nodes = getListDonHang();
-        if (count($nodes['data'])==0):
-          ?>
-          <div class="alert alert-warning">
-            Không tìm thấy đơn hàng!
-          </div>
-        <?php else: ?>
-          <div class="table-responsive" id="table-trang-thai">
-            <table class="table table-bordered text-nowrap">
-              <thead>
-              <tr class="hidden-md">
-                <th width="1%">STT</th>
-                <th >MÃ ĐƠN</th>
-                <th >NGÀY GỬI</th>
-                <th >NGÀY TRẢ</th>
-                <th >THANH TOÁN</th>
-                <th>TRẠNG THÁI</th>
-                <th>TỔNG TIỀN</th>
-              </tr>
-              </thead>
-              <tbody>
-                <?php foreach ($nodes['data'] as $item):?>
-                  <?php $item = (object)$item?>
-                  <tr>
-                    <td><?=$item->index?></td>
-                    <td><a class="text-primary " onclick="show_product(<?=$item->index?>)" ><i data-feather='plus-circle'></i></a> <?=$item->title?></td>
-                    <td class="text-center"><?=$item->field_ngay_nhap?></td>
-                    <td class="text-center"><?=$item->field_ngay_nhan?></td>
-                    <td><?=getListTrangThaiThanhToan($item->field_trang_thanh_toan)?></td>
-                    <td><?=getListTrangThai($item->field_trang_thai)?></td>
-                    <td class="text-right"><?=number_format($item->field_tong_tien)?> đ</td>
-                  </tr>
-                <tr class="detail_product_<?=$item->index?>" style="display: none" >
-                  <td colspan="10">
-                    <div class="alert alert-primary p-1">DANH SÁCH SẢN PHẨM</div>
-                    <div class="table-responsive">
-                      <table class="table table-bordered text-nowrap" id="danh_sach_vot">
-                        <thead>
-                        <tr>
-                          <th width="15%">Tên vợt</th>
-                          <th width="15%">Tình trạng</th>
-                          <th width="15%">Loại cước</th>
-                          <th width="15%">Mức căng</th>
-                          <th width="15%">Trạng thái</th>
-                          <th>Yêu cầu khác</th>
-                        </tr>
-                        </thead>
-                        <tbody id="listbody">
-                        <?php foreach ($item->field_danh_sach_vot as $value): ?>
-                          <?php $value = json_decode($value['value']); ?>
-                          <tr>
-                            <td><?= $value->ten_vot ?></td>
-                            <td><?= $value->tinh_trang ?></td>
-                            <td><?= $value->loai_cuoc ?></td>
-                            <td class="text-right"><?= intval($value->muc_cang) . " " . $value->don_vi ?></td>
-                            <td><?= isset($value->trang_thai) ? getListTrangThai($value->trang_thai) : getListTrangThai("Đã tiếp nhận") ?></td>
-                            <td><?= $value->yeu_cau_khac ?></td>
-                          </tr>
-                        <?php endforeach; ?>
-                        </tbody>
-                      </table>
-                    </div>
-                  </td>
-                </tr>
-                <?php endforeach;?>
-              </tbody>
-            </table>
-          </div>
-        <?php endif; ?>
       </div>
     </div>
-  <?php endif; ?>
+  </form>
 </div>
 <div class="sidenav-overlay"></div>
 <div class="drag-target"></div>
@@ -332,8 +276,4 @@ function getListTrangThaiThanhToan($trangThai)
 }
 
 ?>
-<script>
-  function  show_product($id){
-    $(".detail_product_"+$id).toggle()
-  }
-</script>
+
