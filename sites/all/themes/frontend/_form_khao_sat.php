@@ -1,7 +1,6 @@
 <?php if (isset($_GET['nid'])): ?>
   <?php $node = node_load($_GET['nid']) ?>
   <?php if ($node !== FALSE): ?>
-
     <div class="row">
       <div class="offset-lg-2 col-lg-8  col-12">
         <div class="card border-top-danger">

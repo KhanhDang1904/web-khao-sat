@@ -269,9 +269,4 @@ td img {
   background: white!important;
   border-radius: 50%!important;
 }
-.table-info,.table-warning,.fix-scoll th,.fix-scoll tr{
-  border-color: dimgrey;
-}
-.fix-scoll th,.fix-scoll tr,.fix-scoll td{
-  font-weight: 600;
-}
+
