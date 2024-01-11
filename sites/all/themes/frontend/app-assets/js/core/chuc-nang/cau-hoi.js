@@ -389,14 +389,17 @@ $(document).ready(function () {
   })
   $(document).on('click', '.btn-xem', function (e) {
     var ID = $(this).attr("data-value");
-    $("#modal-xem-don-hang").modal("show");
-    getTableModal('/xem-don-hang', {
+    $("#modal-xem-khao-sat").modal("show");
+    getTableModal('/xem-khao-sat', {
       token: $("#tokenbody").val(),
       nid: ID
-    }, "#table-trang-thai", [
+    }, "#table-xem-khao-sat", [
       getDataColumn('index', "class='text-center' width='1%'"),
       getDataColumn('field_ngay_nhap', "class='text-center' width='1%'"),
-      getDataColumn('field_trang_thai'),
+      getDataColumn('field_ho_ten'),
+      getDataColumn('field_email'),
+      getDataColumn('field_action_eye',"class='text-center' width='1%'"),
+      getDataColumn('field_action_edit',"class='text-center' width='1%'"),
     ])
   })
   $(document).on('click', '.btn-save-trang-thai', function (e) {
@@ -454,7 +457,7 @@ $(document).ready(function () {
     });
   });
   setTimeout(function () {
-    $("h2.brand-text").text('SẢN PHẨM');
+    $("h2.brand-text").text('KHẢO SÁT');
   }, 500)
   $(document).on('click', '.btn-xoa', function (e) {
     e.preventDefault();

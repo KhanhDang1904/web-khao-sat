@@ -29,7 +29,7 @@
 ?>
 
 <?php include_once ('_from.php'); ?>
-<?php include_once ('_xem_don_hang.php'); ?>
+<?php include_once ('_xem.php'); ?>
 <?php include_once ('_form_trang_thai.php'); ?>
 <?php include_once ('_form_trang_thai_thanh_toan.php'); ?>
 <div class="print-block hidden">

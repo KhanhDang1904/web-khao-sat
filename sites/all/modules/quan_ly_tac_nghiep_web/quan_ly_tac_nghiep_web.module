@@ -149,6 +149,12 @@ function quan_ly_tac_nghiep_web_menu()
     'access callback' => 'user_access',
     'access arguments' => array('load_cau_hoi_permission'),
   );
+  $items['xem-khao-sat'] = array( //this creates a URL that will call this form at "examples/form-example"
+    'title' => 'Xem khảo sát',
+    'delivery callback' => 'xem_khao_sat',
+    'access callback' => 'user_access',
+    'access arguments' => array('xem_khao_sat_permission'),
+  );
   return $items;
 }
 
@@ -232,6 +238,9 @@ function quan_ly_tac_nghiep_web_permission()
     ],
     'load_cau_hoi_permission' => [
       'title' => 'Load câu hỏi',
+    ],
+    'xem_khao_sat_permission' => [
+      'title' => 'Xem khảo sát',
     ],
   ];
 }
