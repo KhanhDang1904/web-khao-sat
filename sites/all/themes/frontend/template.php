@@ -35,6 +35,9 @@ function frontend_preprocess_html(&$variables)
   else if(current_path() == 'quan-ly-khao-sat'){
     drupal_add_js($theme_path . '/app-assets/js/core/chuc-nang/cau-hoi.js', array('group' => JS_THEME));
   }
+  else if(current_path() == 'khao-sat'){
+    drupal_add_js($theme_path . '/app-assets/js/core/chuc-nang/khao-sat.js', array('group' => JS_THEME));
+  }
   drupal_add_js($theme_path . '/app-assets/js/core/chuc-nang/main.js', array('group' => JS_THEME));
 }
 
