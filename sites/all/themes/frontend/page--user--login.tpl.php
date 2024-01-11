@@ -90,7 +90,7 @@
             <span>
             <img src="https://<?= $_SERVER['SERVER_NAME'] ?>/<?= $node->field_ghi_chu['und'][0]['value'] ?>"/>
           </span>
-            <h2 class="brand-text text-primary ms-1">Phần mềm quản lý khảo sát CSTAKA </h2>
+            <h2 class="brand-text text-primary ms-1">CSTAKA </h2>
           </a>
           <!-- /Brand logo-->
           <!-- Left Text-->
@@ -130,7 +130,7 @@
                   </div>
                 </div>
                 <a href="#" class="btn btn-primary w-100" tabindex="4" id="btn-dang-nhap">Đăng nhập</a>
-                <p class="text-center mt-2"><span>Bạn chưa có tài khoản?</span><a href="/user/register"><span>&nbsp;Tạo tài khoản mới</span></a>
+                <p class="text-center mt-2"><span>Bạn chưa có tài khoản?</span><a href="/user/register"><span>&nbsp;Đăng kí</span></a>
                 </p>
               </form>
             </div>

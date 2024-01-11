@@ -71,7 +71,7 @@
  * @ingroup themeable
  */
 ?>
-<div class="">
+<div class="hidden">
   <?php if($page['content']) print render($page['content'])?>
 </div>
 
