@@ -4,6 +4,8 @@ include_once(__DIR__ . '/funcs/user/nguoi_dung.inc');
 include_once(__DIR__ . '/funcs/vai-tro/vai_tro.inc');
 include_once(__DIR__ . '/funcs/phan-quyen/phan_quyen.inc');
 include_once(__DIR__ . '/funcs/tong-quan/tong-quan.inc');
+include_once(__DIR__ . '/funcs/glocal.inc');
+include_once(__DIR__ . '/funcs/cau_hoi.inc');
 include("includes/password.inc");
 
 
@@ -111,6 +113,18 @@ function quan_ly_tac_nghiep_web_menu()
     'access callback' => 'user_access',
     'access arguments' => array('save_logo_permission'),
   );
+  $items['active'] = array( //this creates a URL that will call this form at "examples/form-example"
+    'title' => 'Active',
+    'delivery callback' => 'active',
+    'access callback' => 'user_access',
+    'access arguments' => array('active_permission'),
+  );
+  $items['xoa-node'] = array( //this creates a URL that will call this form at "examples/form-example"
+    'title' => 'Xóa node',
+    'delivery callback' => 'xoa_node',
+    'access callback' => 'user_access',
+    'access arguments' => array('xoa_node_permission'),
+  );
   $items['he-thong'] = array( //this creates a URL that will call this form at "examples/form-example"
     'title' => 'Hệ thống',
     'page callback' => 'he_thong',
@@ -122,6 +136,12 @@ function quan_ly_tac_nghiep_web_menu()
     'page callback' => 'khao_sat',
     'page arguments' => array('khao_sat_permission'),
     'access arguments' => array('khao_sat_permission'),
+  );
+  $items['save-cau-hoi'] = array( //this creates a URL that will call this form at "examples/form-example"
+    'title' => 'Lưu câu hỏi',
+    'page callback' => 'save_cau_hoi',
+    'page arguments' => array('save_cau_hoi_permission'),
+    'access arguments' => array('save_cau_hoi_permission'),
   );
   return $items;
 }
@@ -192,8 +212,17 @@ function quan_ly_tac_nghiep_web_permission()
     'he_thong_permission' => [
       'title' => 'Hệ thống',
     ],
-    '' => [
+    'khao_sat_permission' => [
       'title' => 'Khảo sát',
+    ],
+    'active_permission' => [
+      'title' => 'Active',
+    ],
+    'save_cau_hoi_permission' => [
+      'title' => 'Lưu câu hỏi',
+    ],
+    'xoa_node_permission' => [
+      'title' => 'Xóa node',
     ],
   ];
 }

@@ -32,6 +32,9 @@ function frontend_preprocess_html(&$variables)
   else if(current_path() == 'ho-so-ca-nhan'){
     drupal_add_js($theme_path . '/app-assets/js/core/chuc-nang/ho-so-ca-nhan.js', array('group' => JS_THEME));
   }
+  else if(current_path() == 'cau-hoi'){
+    drupal_add_js($theme_path . '/app-assets/js/core/chuc-nang/cau-hoi.js', array('group' => JS_THEME));
+  }
   drupal_add_js($theme_path . '/app-assets/js/core/chuc-nang/main.js', array('group' => JS_THEME));
 }
 
