@@ -45,8 +45,8 @@ function save_cau_hoi() {
   }
 }
 
-function load_san_pham() {
-  if(!user_access("load_san_pham_permission")){
+function load_cau_hoi() {
+  if(!user_access("load_cau_hoi_permission")){
     throw new Exception('<div>Bạn không có quyền truy cập chức năng này</div>');
   }
   if (!validateToken($_POST['token'], 60 * 24)) {
@@ -63,18 +63,51 @@ function load_san_pham() {
     echo json_encode(
       [
         'nid' => $_POST['id'],
-        'field_ten_san_pham_sp' => isset($data->field_ten_san_pham['und']) ?$data->field_ten_san_pham['und'][0]['value']: "",
-        'field_cam_giac_luoi_sp' => isset($data->field_cam_giac_luoi['und']) ?$data->field_cam_giac_luoi['und'][0]['value']: "",
-        'field_phan_loai_san_pham_sp' => isset($data->field_phan_loai_san_pham['und']) ?$data->field_phan_loai_san_pham['und'][0]['value']: "",
-        'field_gia_sp' => isset($data->field_gia['und']) ? number_format($data->field_gia['und'][0]['value'],0,',',''): "",
-        'field_thuong_hieu_sp' => isset($data->field_thuong_hieu['und']) ? $data->field_thuong_hieu['und'][0]['value']: "",
-        'field_noi_bat_sp' => isset($data->field_noi_bat['und']) ? $data->field_noi_bat['und'][0]['value']: "",
-        'editor' => isset($data->field_mo_ta['und']) ? $data->field_mo_ta['und'][0]['value']: "",
-        'field_mau_sac_sp' => isset($data->field_mau_sac['und']) ? $data->field_mau_sac['und']:[],
-        'title_sp' => $data->title,
-        ]
+        'title_ch' => isset($data->title) ?$data->title: "",
+        'field_mo_ta_ch' => isset($data->field_mo_ta['und']) ?$data->field_mo_ta['und'][0]['value']: "",
+        'block_cau_hoi'=>getBlockCauHoi($data->field_danh_sach_cau_hoi['und'])
+      ]
     );
   }
+}
+
+function getBlockCauHoi( $data)
+{
+  $body = "";
+  if (count($data)>0){
+    foreach ($data as $index =>$item){
+      $cauHoi = json_decode($item['value']);
+      $body.= '<tr>
+                  <td >
+                    <div class="row">
+                      <div class="col-md-8 col-12 mb-1 mb-md-0">
+                        <label class="form-label">Câu hỏi '.($index+1).'</label>
+                        <input type="text" class="form-control" name="cau_hoi[]" placeholder="Câu hỏi '.($index+1).'"
+                               aria-describedby="button-addon2" value="'.$cauHoi->cau_hoi.'"/>
+                      </div>
+                      <div class="col-md-2 col-6">
+                        <label class="form-label">Yêu cầu</label>
+                        <select name="bat_buoc[]" class="form-select ">
+                          <option '.($cauHoi->bat_buoc=="1"?"selected":"").' value="1">Bắt buộc</option>
+                          <option '.($cauHoi->bat_buoc=="0"?"selected":"").' value="0">Không bắt buộc</option>
+                        </select>
+                      </div>
+                      <div class="col-md-2 col-6">
+                        <label class="form-label">Loại</label>
+                        <select name="type[]" class="form-select ">
+                          <option '.($cauHoi->type=="1"?"selected":"").' value="1">Đúng/Sai</option>
+                          <option '.($cauHoi->type=="0"?"selected":"").' value="0">Văn bản</option>
+                        </select>
+                      </div>
+                    </div>
+                  </td>
+                  <td width="1%" class="text-center">
+                    <a class="btn-xoa-dong" type="button"><i data-feather="trash-2" class="text-danger"></i></a>
+                  </td>
+                </tr>';
+    }
+  }
+  return $body;
 }
 
 function active_san_pham() {

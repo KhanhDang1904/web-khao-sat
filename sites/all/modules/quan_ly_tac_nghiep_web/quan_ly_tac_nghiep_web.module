@@ -139,9 +139,15 @@ function quan_ly_tac_nghiep_web_menu()
   );
   $items['save-cau-hoi'] = array( //this creates a URL that will call this form at "examples/form-example"
     'title' => 'Lưu câu hỏi',
-    'page callback' => 'save_cau_hoi',
-    'page arguments' => array('save_cau_hoi_permission'),
+    'delivery callback' => 'save_cau_hoi',
+    'access callback' => 'user_access',
     'access arguments' => array('save_cau_hoi_permission'),
+  );
+  $items['load-cau-hoi'] = array( //this creates a URL that will call this form at "examples/form-example"
+    'title' => 'load câu hỏi',
+    'delivery callback' => 'load_cau_hoi',
+    'access callback' => 'user_access',
+    'access arguments' => array('load_cau_hoi_permission'),
   );
   return $items;
 }
@@ -223,6 +229,9 @@ function quan_ly_tac_nghiep_web_permission()
     ],
     'xoa_node_permission' => [
       'title' => 'Xóa node',
+    ],
+    'load_cau_hoi_permission' => [
+      'title' => 'Load câu hỏi',
     ],
   ];
 }

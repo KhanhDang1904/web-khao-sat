@@ -4,6 +4,35 @@ $(document).ready(function () {
     $("#modal-cau-hoi").modal('show');
     $('#form-cau-hoi')[0].reset();
     $("#title-modal-cau-hoi").text('Thêm danh sách câu hỏi');
+    $(".block-cau-hoi").html(`<tr>
+      <td >
+        <div class="row">
+          <div class="col-md-8 col-12 mb-1 mb-md-0">
+            <label class="form-label">Câu hỏi 1</label>
+            <input type="text" class="form-control" name="cau_hoi[]" placeholder="Câu hỏi"
+                   aria-describedby="button-addon2"/>
+          </div>
+          <div class="col-md-2 col-6">
+            <label class="form-label">Yêu cầu</label>
+            <select name="bat_buoc[]" class="form-select ">
+              <option value="1">Bắt buộc</option>
+              <option value="0">Không bắt buộc</option>
+            </select>
+          </div>
+          <div class="col-md-2 col-6">
+            <label class="form-label">Loại</label>
+            <select name="type[]" class="form-select ">
+              <option value="1">Đúng/Sai</option>
+              <option value="0">Văn bản</option>
+            </select>
+          </div>
+        </div>
+      </td>
+      <td width="1%" class="text-center">
+        <a class=" btn-xoa-dong " type="button"><i data-feather='trash-2' class="text-danger"></i></a>
+      </td>
+    </tr>`)
+    loadIcon()
   });
   $(document).on('click', '.btn-save', function (e) {
     e.preventDefault();
@@ -54,7 +83,7 @@ $(document).ready(function () {
   $(document).on('click', '.btn-sua', function (e) {
     e.preventDefault();
     $.ajax({
-      url: '/load-san-pham',
+      url: '/load-cau-hoi',
       dataType: 'json',
       data: {
         token: $("#tokenbody").val(),
@@ -65,24 +94,11 @@ $(document).ready(function () {
         blockPage();
       },
       success: function (data) {
-        $("#modal-san-pham").modal('show');
-        $('#form-san-pham')[0].reset();
-        $("#title-modal-san-pham").text('Cập nhật sản phẩm');
-        $("#form-san-pham #editor").parent().html(`
-         <label for="editor">Mô tả</label>
-              <textarea  id="editor" rows="8">
-              </textarea>
-        `)
-        $.each(data.field_mau_sac_sp,function (key,value){
-          $("input[value='"+value.value+"'].form-check-input").prop('checked',true)
-        })
-        $("input[value='"+data.field_phan_loai_san_pham_sp+"'].field_phan_loai_san_pham_sp").prop('checked',true)
-        $("input[value='"+data.field_cam_giac_luoi_sp+"'].field_cam_giac_luoi_sp").prop('checked',true)
-        if ($("#editor").length > 0) {
-          CKEDITOR.replace('editor');
-        }
-        loadDataValue(data, '#form-san-pham')
-        loadNumerical()
+        $("#modal-cau-hoi").modal('show');
+        $('#form-cau-hoi')[0].reset();
+        $("#title-modal-cau-hoi").text('Cập nhật câu hỏi');
+        loadDataValue(data, '#form-cau-hoi')
+        $(".block-cau-hoi").html(data.block_cau_hoi)
         loadIcon()
       },
       complete: function () {
@@ -339,12 +355,13 @@ $(document).ready(function () {
   })
   $(document).on('click', '.btn-add-row', function (e) {
     getToastSuccess("Thêm dòng thành công")
+    $sttCauHoi = parseInt($(".block-cau-hoi tr").length)+1 ;
     $(".block-cau-hoi").append(`
     <tr>
       <td >
         <div class="row">
           <div class="col-md-8 col-12 mb-1 mb-md-0">
-            <label class="form-label">Câu hỏi</label>
+            <label class="form-label">Câu hỏi `+$sttCauHoi+`</label>
             <input type="text" class="form-control" name="cau_hoi[]" placeholder="Câu hỏi"
                    aria-describedby="button-addon2"/>
           </div>
