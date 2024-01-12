@@ -227,7 +227,7 @@ global $user;
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingMarginOne">
                       <button  class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionMarginOne<?=$index?>" aria-expanded="false" aria-controls="accordionMarginOne<?=$index?>">
-                        <?=$item->title?>
+                        <?=$item->title." "?> <?=checKhaoSat($item->nid)==FALSE?"":"  <i class='text-success ml-10' data-feather='check-circle'></i>"?>
                       </button>
                     </h2>
                     <div id="accordionMarginOne<?=$index?>" class="accordion-collapse collapse" aria-labelledby="headingMarginOne"

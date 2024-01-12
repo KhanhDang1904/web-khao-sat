@@ -155,6 +155,12 @@ function quan_ly_tac_nghiep_web_menu()
     'access callback' => 'user_access',
     'access arguments' => array('xem_khao_sat_permission'),
   );
+  $items['save-khao-sat'] = array( //this creates a URL that will call this form at "examples/form-example"
+    'title' => 'Save khảo sát',
+    'delivery callback' => 'save_khao_sat',
+    'access callback' => 'user_access',
+    'access arguments' => array('save_khao_sat_permission'),
+  );
   return $items;
 }
 
@@ -241,6 +247,9 @@ function quan_ly_tac_nghiep_web_permission()
     ],
     'xem_khao_sat_permission' => [
       'title' => 'Xem khảo sát',
+    ],
+    'save_khao_sat_permission' => [
+      'title' => 'Save khảo sát',
     ],
   ];
 }
@@ -349,4 +358,23 @@ function getListKhaoSat(){
   return [
     'data' => node_load_multiple($nids),
   ];
+}
+function checKhaoSat($khao_sat_id){
+  global $user;
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', "khao_sat");
+  $query->fieldCondition('field_hoat_dong','value',1);
+  $query->fieldCondition('field_khao_sat_id','target_id',$khao_sat_id);
+  $query->fieldCondition('field_khach_hang_id','target_id',$user->uid);
+  $results = $query->execute();
+  $nids = array_keys($results['node']);
+  if (count($nids)==0){
+    return  false;
+  }
+  $data =  node_load_multiple($nids);
+  foreach ($data as $item){
+    return  $item;
+  }
+  return  false;
 }

@@ -1,4 +1,40 @@
 <?php
+
+function save_khao_sat()
+{
+  if (!user_access("save_khao_sat_permission")) {
+    throw new Exception('<div>Bạn không có quyền truy cập chức năng này</div>');
+  }
+  if (!validateToken($_POST['tokenForm'], 60 * 24)) {
+    throw new Exception('<div>Token hết hạn, vui lòng Làm mới lại trang</div>');
+  } else {
+    $cauHois = [];
+    foreach ($_POST['cau_hoi'] as $index => $item) {
+      $cauHois[] = json_encode([
+        'cau_hoi' => $_POST['cau_hoi'][$index],
+        'bat_buoc' => $_POST['bat_buoc'][$index],
+        'type' => $_POST['type'][$index],
+        'dap_an' => $_POST['dap_an'][$index],
+      ]);
+    }
+    global $user;
+    if ($_POST['nid'] == '') {
+      $node = insertNewNode('khao_sat', $user->mail, [], $user->uid);
+    } else {
+      $node = node_load($_POST['nid']);
+    }
+    if ($node != False) {
+      $entity = entity_metadata_wrapper('node', $node);
+      $entity->field_khao_sat_id->set($_POST['field_khao_sat_id']);
+      $entity->field_khach_hang_id->set($user->uid);
+      $entity->field_noi_dung_khao_sat->set($cauHois);
+      $entity->save();
+    }
+    echo json_encode([
+      'content' => 'Đã lưu thông tin thành công',
+    ]);
+  }
+}
 function save_cau_hoi()
 {
   if (!user_access("save_cau_hoi_permission")) {
@@ -42,6 +78,7 @@ function save_cau_hoi()
     ]);
   }
 }
+
 
 function load_cau_hoi()
 {
