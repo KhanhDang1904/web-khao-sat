@@ -83,7 +83,7 @@ global $user;
           <span class="brand-logo">
             <img src="<?=$node->field_ghi_chu['und'][0]['value']?>"/>
           </span>
-            <h2 class="brand-text text-primary ms-1"></h2>
+            <h2 class="brand-text text-primary ms-1">CSTAKA</h2>
         </a>
       </li>
     </ul>
@@ -95,26 +95,29 @@ global $user;
       </ul>
     </div>
     <ul class="nav navbar-nav align-items-center ms-auto">
-
-      <li class="nav-item dropdown dropdown-notification me-25">
-        <a class="nav-link" href="#" data-bs-toggle="dropdown">
-          <i class="ficon" data-feather="bell"></i>
-          <span class="badge rounded-pill bg-danger badge-up">5</span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
-          <li class="dropdown-menu-header">
-            <div class="dropdown-header d-flex">
-              <h4 class="notification-title mb-0 me-auto">Thông báo</h4>
-              <div class="badge rounded-pill badge-light-primary">6 Thông báo mới</div>
-            </div>
-          </li>
-          <li class="scrollable-container media-list">
-            <?php
-            module_load_include('inc', 'webform', 'includes/webform.submissions');
-            $submissions = webform_get_submissions(array('nid'=> 26686), null,5);
-            array_multisort($submissions,SORT_DESC);
-            foreach ($submissions as $submission){
-              print ' <a class="d-flex" href="/ket-qua">
+      <?php
+      global $user;
+      if (!isset($user->roles[8])&&$user->uid !== 0):
+        ?>
+        <li class="nav-item dropdown dropdown-notification me-25">
+          <a class="nav-link" href="#" data-bs-toggle="dropdown">
+            <i class="ficon" data-feather="bell"></i>
+            <span class="badge rounded-pill bg-danger badge-up">5</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
+            <li class="dropdown-menu-header">
+              <div class="dropdown-header d-flex">
+                <h4 class="notification-title mb-0 me-auto">Thông báo</h4>
+                <div class="badge rounded-pill badge-light-primary">6 Thông báo mới</div>
+              </div>
+            </li>
+            <li class="scrollable-container media-list">
+              <?php
+              module_load_include('inc', 'webform', 'includes/webform.submissions');
+              $submissions = webform_get_submissions(array('nid'=> 26686), null,5);
+              array_multisort($submissions,SORT_DESC);
+              foreach ($submissions as $submission){
+                print ' <a class="d-flex" href="/ket-qua">
             <div class="list-item d-flex align-items-start">
               <div class="me-1">
                 <div class="avatar bg-light-warning">
@@ -130,15 +133,16 @@ global $user;
               </div>
             </div>
           </a>';
-            }
-            ?>
-          </li>
-          <li class="dropdown-menu-footer"><a class="btn btn-primary w-100" href="/ket-qua">Xem tất cả</a></li>
-        </ul>
-      </li>
+              }
+              ?>
+            </li>
+            <li class="dropdown-menu-footer"><a class="btn btn-primary w-100" href="/ket-qua">Xem tất cả</a></li>
+          </ul>
+        </li>
+      <?php endif;?>
       <li class="nav-item dropdown dropdown-user">
         <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <div class="user-nav d-sm-flex d-none">
+          <div class="user-nav d-sm-flex ">
             <span class="user-name fw-bolder"><?=$user->uid == 0 ? 'Khách hàng' : $user->name; ?></span>
             <span class="user-status"><?=$user->uid == 0 ? '' : array_values($user->roles)[0]?></span>
           </div>
@@ -162,9 +166,16 @@ global $user;
               <i class="me-50" data-feather="user"></i> Đăng nhập
             </a>
           <?php else:?>
-          <a class="dropdown-item" href="<?=url('user/logout')?>">
-            <i class="me-50" data-feather="power"></i> Đăng xuất
-          </a>
+            <?php $user  = user_load($user->uid)?>
+            <a class="dropdown-item" href="#">
+              <i class="me-50" data-feather="user"></i> <?=$user->field_ho_ten['und'][0]['value']?>
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="me-50" data-feather="mail"></i> <?=$user->mail?>
+            </a>
+            <a class="dropdown-item" href="<?=url('user/logout')?>">
+              <i class="me-50" data-feather="power"></i> Đăng xuất
+            </a>
           <?php endif;?>
         </div>
       </li>
@@ -186,12 +197,12 @@ global $user;
     <div class="navbar-header">
       <ul class="nav navbar-nav flex-row">
         <li class="nav-item me-auto">
-          <a class="navbar-brand" href="/don-hang?title=&field_trang_thanh_toan_value=All&field_ngay_nhan_value_tu%5Bvalue%5D%5Bdate%5D=<?=date("m/d/Y",strtotime(date('Y-m-d')." - 1 day"))?>&field_ngay_nhan_value_den%5Bvalue%5D%5Bdate%5D=<?=date("m/d/Y",strtotime(date('Y-m-d')." + 1 day"))?>">
+          <a class="navbar-brand" href="<?php print $front_page ?>">
             <?php $node= node_load(26604);?>
             <span class="brand-logo">
             <img src="<?=$node->field_ghi_chu['und'][0]['value']?>"/>
           </span>
-            <h2 class="brand-text mb-0"></h2>
+            <h2 class="brand-text mb-0">CSTAKA</h2>
           </a>
         </li>
         <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i></a></li>

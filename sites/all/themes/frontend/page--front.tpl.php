@@ -102,7 +102,7 @@ global $user;
         <a class="nav-link dropdown-toggle dropdown-user-link"
            id="dropdown-user" href="#" data-bs-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
-          <div class="user-nav d-sm-flex d-none">
+          <div class="user-nav d-sm-flex">
             <span class="user-name fw-bolder"><?= $user->name == "" ? "Khách hàng" : $user->name; ?></span>
             <span
               class="user-status"><?= array_values($user->roles)[0] ?></span>
@@ -129,6 +129,13 @@ global $user;
               <i class="me-50" data-feather="user"></i> Đăng nhập
             </a>
           <?php else:?>
+            <?php $user  = user_load($user->uid)?>
+            <a class="dropdown-item" href="#">
+              <i class="me-50" data-feather="user"></i> <?=$user->field_ho_ten['und'][0]['value']?>
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="me-50" data-feather="mail"></i> <?=$user->mail?>
+            </a>
             <a class="dropdown-item" href="<?=url('user/logout')?>">
               <i class="me-50" data-feather="power"></i> Đăng xuất
             </a>
@@ -227,7 +234,7 @@ global $user;
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingMarginOne">
                       <button  class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionMarginOne<?=$index?>" aria-expanded="false" aria-controls="accordionMarginOne<?=$index?>">
-                        <?=$item->title." "?> <?=checKhaoSat($item->nid)==FALSE?"":"  <i class='text-success ml-10' data-feather='check-circle'></i>"?>
+                         <?=checKhaoSat($item->nid)==FALSE?"<i data-feather='alert-triangle' class='text-warning'></i>":"  <i class='text-success' data-feather='check-circle'></i>"?> <span class="ml-10"><?=$item->title." "?></span>
                       </button>
                     </h2>
                     <div id="accordionMarginOne<?=$index?>" class="accordion-collapse collapse" aria-labelledby="headingMarginOne"

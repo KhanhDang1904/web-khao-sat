@@ -18,12 +18,12 @@
     </div>
 
     <div class="col-md-2">
-      <button type="submit" class="btn btn-primary btn-tim-kiem col-12">
+      <button type="submit" class="btn btn-primary btn-tim-kiem col-12 mb-md-0 mb-1">
         <i data-feather='search'></i> Tìm kiếm
       </button>
     </div>
     <div class="col-md-2 ">
-      <a href="#" class="btn btn-success btn-khoi-phuc-luoi col-12">
+      <a href="#" class="btn btn-success btn-khoi-phuc-luoi col-12 mb-md-0 mb-1">
         <i data-feather='refresh-ccw'></i> Khôi phục lưới
       </a>
     </div>

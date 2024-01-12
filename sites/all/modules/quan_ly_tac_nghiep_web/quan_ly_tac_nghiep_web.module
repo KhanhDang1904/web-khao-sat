@@ -265,7 +265,7 @@ function quan_ly_tac_nghiep_web_views_query_alter(&$view, &$query)
 {
   if($view->name == 'danh_sach_noi_dung') {
     if(
-      $view->current_display=='page_tra_cuu_don'
+      $view->current_display=='page_khao_sat'
     ){
       global $user;
       if($user->uid != 1){

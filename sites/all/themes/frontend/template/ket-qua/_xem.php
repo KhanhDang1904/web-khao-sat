@@ -8,7 +8,6 @@
                 aria-label="Close"></button>
       </div>
       <div class="modal-body">
-
         <div id="table-xem-khao-sat">
           <table class="table table-bordered text-nowrap">
             <thead>
@@ -48,7 +47,6 @@
             </tfoot>
           </table>
         </div>
-
       </div>
       <div class="modal-footer">
         <button type="button"
