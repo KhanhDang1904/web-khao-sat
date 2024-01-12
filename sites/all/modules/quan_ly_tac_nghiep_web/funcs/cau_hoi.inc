@@ -158,7 +158,7 @@ function xem_khao_sat()
     }
     $data = node_load($_POST['nid']);
     $arrFields = [
-      'field_khach_hang_id' => [
+      'field_khao_sat_id' => [
         'column' => 'target_id',
         'value' => $data->nid,
         'operator' => '='

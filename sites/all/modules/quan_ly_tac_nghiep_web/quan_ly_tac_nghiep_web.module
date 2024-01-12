@@ -353,6 +353,7 @@ function getListKhaoSat(){
     ->entityCondition('bundle', "cau_hoi")
     ->propertyOrderBy('nid', 'DESC');
   $query->fieldCondition('field_hoat_dong','value',1);
+  $query->fieldCondition('field_active','value',1);
   $results = $query->execute();
   $nids = array_keys($results['node']);
   return [
