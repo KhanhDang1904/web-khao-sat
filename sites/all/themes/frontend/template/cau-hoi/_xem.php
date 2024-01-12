@@ -8,8 +8,7 @@
                 aria-label="Close"></button>
       </div>
       <div class="modal-body">
-
-        <div id="table-xem-khao-sat">
+        <div id="table-xem-khao-sat" class="table-responsive">
           <table class="table table-bordered text-nowrap">
             <thead>
             <tr>

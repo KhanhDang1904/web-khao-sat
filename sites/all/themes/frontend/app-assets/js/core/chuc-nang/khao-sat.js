@@ -13,7 +13,6 @@ $(document).ready(function (){
         $dap_an = $element.val();
       }
       $cauHoi = $(this).parent().text();
-      console.log($dap_an)
       if ($dap_an==""|| $dap_an==undefined){
         $loi = true;
         toastError("Vui lòng không để trống: "+$cauHoi);
@@ -43,8 +42,6 @@ $(document).ready(function (){
   $(document).on("click",".btn-back-page",function (){
     $page = parseInt($(this).attr("data-page"));
     $back_page = $page - 1;
-    console.log($page)
-    console.log($back_page)
     $last_page = parseInt($(this).parent().parent().attr("data-page"));
     $(".page-"+$page).addClass("hidden")
     $(".page-"+$back_page).removeClass("hidden")
@@ -65,28 +62,46 @@ $(document).ready(function (){
     loadIcon()
   })
   $(document).on("click",".btn-send-khao-sat",function (){
-    $.ajax({
-      url: '/save-khao-sat',
-      data:$("#form-khao-sat").serializeArray() ,
-      dataType: 'json',
-      type: 'POST',
-      beforeSend: function () {
-        blockForm($('#form-khao-sat'))
-      },
-      success: function (data) {
-        getToastSuccess(data.content);
-        setTimeout(function () {
-          location.reload()
-        },500)
-      },
-      complete: function () {
-        unblockPage();
-      },
-      error: function (r1, r2) {
-        getToastError(r1);
-        unblockPage();
-      }
-    });
+    $loi = false;
 
+    $(".required").each(function (){
+
+      $element =  $(this).parent().parent().find("input[name='dap_an[]']");
+      if ($element.attr("type")=="radio"){
+        $dap_an = $(this).parent().parent().find("input:checked").val();
+      }else {
+        $dap_an = $element.val();
+      }
+      $cauHoi = $(this).parent().text();
+      if ($dap_an==""|| $dap_an==undefined){
+        $loi = true;
+        toastError("Vui lòng không để trống: "+$cauHoi);
+        return false;
+      }
+    })
+    if (!$loi){
+      $.ajax({
+        url: '/save-khao-sat',
+        data:$("#form-khao-sat").serializeArray() ,
+        dataType: 'json',
+        type: 'POST',
+        beforeSend: function () {
+          blockForm($('#form-khao-sat'))
+        },
+        success: function (data) {
+          getToastSuccess(data.content);
+          setTimeout(function () {
+            location.reload()
+          },500)
+        },
+        complete: function () {
+          unblockPage();
+        },
+        error: function (r1, r2) {
+          getToastError(r1);
+          unblockPage();
+        }
+      });
+    }
   })
 })

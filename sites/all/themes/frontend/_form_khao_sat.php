@@ -35,7 +35,7 @@
                             <strong>Câu <?= $index + 1 ?>: <?= $dapAn->cau_hoi ?></strong>
                           </button>
                         </h2>
-                        <div id="accordionMarginOne<?= $index ?>" class="accordion-collapse collapse"
+                        <div id="accordionMarginOne<?= $index ?>" class="accordion-collapse collapse show"
                              aria-labelledby="headingMarginOne"
                              data-bs-parent="#accordionMargin">
                           <div class="accordion-body ">
