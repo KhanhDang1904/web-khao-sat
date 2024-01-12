@@ -361,7 +361,11 @@ function getListKhaoSat(){
   ];
 }
 function checKhaoSat($khao_sat_id){
-  global $user;
+  if (isset($_GET['uid'])){
+    $user = user_load($_GET['uid']);
+  }else{
+    global $user;
+  }
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', "khao_sat");

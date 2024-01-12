@@ -18,7 +18,7 @@
               <th >Họ tên</th>
               <th >Email</th>
               <th width="1%">Xem</th>
-              <th width="1%">Sửa</th>
+<!--              <th width="1%">Sửa</th>-->
             </tr>
             </thead>
             <tbody>
@@ -26,7 +26,7 @@
             </tbody>
             <tfoot>
             <tr>
-              <td colspan="6" class="text-center">
+              <td colspan="5" class="text-center">
                 <div class="row">
                   <div class="col-1">
                     <select name="limit" id="table_limit" class="form-select">

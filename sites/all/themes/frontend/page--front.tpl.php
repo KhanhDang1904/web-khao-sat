@@ -117,29 +117,29 @@ global $user;
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
           <?php
           global $user;
-          if (!isset($user->roles[8])&&$user->uid !== 0):
+          if (!isset($user->roles[8]) && $user->uid !== 0):
             ?>
             <a class="dropdown-item" href="/ho-so-ca-nhan">
               <i class="me-50" data-feather="user"></i> Hồ sơ cá nhân
             </a>
-          <?php endif;?>
+          <?php endif; ?>
           <div class="dropdown-divider"></div>
-          <?php if ($user->uid==0):?>
-            <a class="dropdown-item" href="<?=url('user/login')?>">
+          <?php if ($user->uid == 0): ?>
+            <a class="dropdown-item" href="<?= url('user/login') ?>">
               <i class="me-50" data-feather="user"></i> Đăng nhập
             </a>
-          <?php else:?>
-            <?php $user  = user_load($user->uid)?>
+          <?php else: ?>
+            <?php $user = user_load($user->uid) ?>
             <a class="dropdown-item" href="#">
-              <i class="me-50" data-feather="user"></i> <?=$user->field_ho_ten['und'][0]['value']?>
+              <i class="me-50" data-feather="user"></i> <?= $user->field_ho_ten['und'][0]['value'] ?>
             </a>
             <a class="dropdown-item" href="#">
-              <i class="me-50" data-feather="mail"></i> <?=$user->mail?>
+              <i class="me-50" data-feather="mail"></i> <?= $user->mail ?>
             </a>
-            <a class="dropdown-item" href="<?=url('user/logout')?>">
+            <a class="dropdown-item" href="<?= url('user/logout') ?>">
               <i class="me-50" data-feather="power"></i> Đăng xuất
             </a>
-          <?php endif;?>
+          <?php endif; ?>
         </div>
 
       </li>
@@ -230,27 +230,36 @@ global $user;
             <div class="accordion accordion-margin" id="accordionMargin">
               <?php $list = getListKhaoSat()['data'] ?>
               <?php if (count($list) > 0): ?>
-                <?php foreach ($list as $index=>$item): ?>
+                <?php foreach ($list as $index => $item): ?>
+                  <?php $check = checKhaoSat($item->nid) ?>
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingMarginOne">
-                      <button  class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionMarginOne<?=$index?>" aria-expanded="false" aria-controls="accordionMarginOne<?=$index?>">
-                         <?=checKhaoSat($item->nid)==FALSE?"<i data-feather='alert-triangle' class='text-warning'></i>":"  <i class='text-success' data-feather='check-circle'></i>"?> <span class="ml-10"><?=$item->title." "?></span>
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#accordionMarginOne<?= $index ?>" aria-expanded="false"
+                              aria-controls="accordionMarginOne<?= $index ?>">
+                        <?= $check == FALSE ? "<i data-feather='alert-triangle' class='text-warning'></i>" : "  <i class='text-success' data-feather='check-circle'></i>" ?>
+                        <span class="ml-10"><?= $item->title . " " ?></span>
                       </button>
                     </h2>
-                    <div id="accordionMarginOne<?=$index?>" class="accordion-collapse collapse" aria-labelledby="headingMarginOne"
+                    <div id="accordionMarginOne<?= $index ?>" class="accordion-collapse collapse"
+                         aria-labelledby="headingMarginOne"
                          data-bs-parent="#accordionMargin">
                       <div class="accordion-body text-center">
-                         <p>Bắt đầu khảo sát : <?=$item->title?></p>
-                        <a class="btn btn-primary" href="/khao-sat?nid=<?=$item->nid?>">Bắt đầu</a>
-
+                        <?php if ($check == FALSE):?>
+                        <p>Bắt đầu khảo sát : <?= $item->title ?></p>
+                        <a class="btn btn-primary" href="/khao-sat?nid=<?= $item->nid ?>">Bắt đầu</a>
+                        <?php else:?>
+                          <p> Đã gửi: <?= date("H:i d/m/Y",$check->created) ?></p>
+                          <a class="btn btn-primary" href="/khao-sat?nid=<?= $item->nid ?>">Xem kết quả</a>
+                        <?php endif;?>
                       </div>
                     </div>
                   </div>
                 <?php endforeach; ?>
               <?php else: ?>
+                <div class="alert alert-warning p-1">Hiện đang không có khảo sát!</div>
+              <?php endif; ?>
             </div>
-            <div class="alert alert-warning p-1">Hiện đang không có khảo sát!</div>
-            <?php endif; ?>
           </div>
         </div>
       </div>

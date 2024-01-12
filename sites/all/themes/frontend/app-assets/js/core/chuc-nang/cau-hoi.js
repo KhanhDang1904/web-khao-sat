@@ -24,6 +24,7 @@ $(document).ready(function () {
             <select name="type[]" class="form-select ">
               <option value="1">Đúng/Sai</option>
               <option value="0">Văn bản</option>
+              <option value="2">Thời gian </option>
             </select>
           </div>
         </div>
@@ -377,6 +378,7 @@ $(document).ready(function () {
             <select name="type[]" class="form-select ">
               <option value="1">Đúng/Sai</option>
               <option value="0">Văn bản</option>
+               <option value="2">Thời gian </option>
             </select>
           </div>
         </div>
@@ -399,7 +401,7 @@ $(document).ready(function () {
       getDataColumn('field_ho_ten'),
       getDataColumn('field_email'),
       getDataColumn('field_action_eye',"class='text-center' width='1%'"),
-      getDataColumn('field_action_edit',"class='text-center' width='1%'"),
+      // getDataColumn('field_action_edit',"class='text-center' width='1%'"),
     ])
   })
   $(document).on('click', '.btn-save-trang-thai', function (e) {

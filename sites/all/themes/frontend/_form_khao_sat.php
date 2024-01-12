@@ -3,26 +3,60 @@
   <?php if ($node !== FALSE): ?>
     <?php $checkKhaoSat = checKhaoSat($_GET['nid']) ?>
     <?php if ($checkKhaoSat !== FALSE): ?>
-    <div class="row">
-      <div class="col-md-6 offset-md-3 col-12">
-        <div class="card">
-          <div class="card-body">
-            <div class="row text-center">
-              <div class="text-success"><i style="width: 100px;height: 100px" data-feather='check-circle'></i></div>
-              <div class="col-md-12 mt-1">
-                <h4>Gửi <?=$node->title?> thành công</h4>
-              </div>
-              <div class="col-md-12">
-                Bạn đã gửi khảo sát vào ngày: <?=date("H:i d/m/Y",($checkKhaoSat->created))?>
-              </div>
-              <div class="col-md-12 text-center mt-1">
-                <a class="btn-primary btn" href="/node">Quay lại</a>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 col-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row ">
+                <div class="text-success text-center"><i style="width: 100px;height: 100px"
+                                                         data-feather='check-circle'></i></div>
+                <div class="col-md-12 mt-1 text-center">
+                  <h4>Gửi <?= $node->title ?> thành công</h4>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <?php if (isset($_GET['uid'])): ?>
+                    <?php $userCheck = user_load($_GET['uid']) ?>
+                    <div><strong><i data-feather="user"></i> <?= $userCheck->field_ho_ten['und'][0]['value'] ?></strong></div>
+                    <div><strong><i data-feather="mail"></i> <?= $userCheck->mail ?></strong></div>
+                  <?php endif; ?>
+                  Bạn đã gửi khảo sát vào ngày: <?= date("H:i d/m/Y", ($checkKhaoSat->created)) ?>
+                </div>
+                <div class="accordion accordion-margin" id="accordionMargin">
+                  <?php $list = $checkKhaoSat->field_noi_dung_khao_sat['und'] ?>
+                  <?php if (count($list) > 0): ?>
+                    <?php foreach ($list as $index => $item): ?>
+                      <?php $dapAn = json_decode($item['value']) ?>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingMarginOne">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                  data-bs-target="#accordionMarginOne<?= $index ?>" aria-expanded="false"
+                                  aria-controls="accordionMarginOne<?= $index ?>">
+                            <strong>Câu <?= $index + 1 ?>: <?= $dapAn->cau_hoi ?></strong>
+                          </button>
+                        </h2>
+                        <div id="accordionMarginOne<?= $index ?>" class="accordion-collapse collapse"
+                             aria-labelledby="headingMarginOne"
+                             data-bs-parent="#accordionMargin">
+                          <div class="accordion-body ">
+                            <i
+                              data-feather='clipboard'></i> <?= $dapAn->dap_an == "" ? "Không có đáp án" : $dapAn->dap_an ?>
+                          </div>
+                        </div>
+                      </div>
+                    <?php endforeach; ?>
+                  <?php else: ?>
+                    <div class="alert alert-warning p-1">Hiện đang không có khảo sát!</div>
+                  <?php endif; ?>
+                </div>
+                <div class="col-md-12 text-center mt-1">
+                  <a class="btn-primary btn" href="/node">Quay lại</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     <?php else: ?>
       <form id="form-khao-sat">
         <input name="nid" value="" class="hidden">
@@ -32,8 +66,11 @@
           <div class="offset-lg-2 col-lg-8  col-12">
             <div class="card border-top-danger">
               <div class="card-header">
-                <h3><strong><?= $node->title ?></strong></h3>
-                <?= $node->field_mo_ta['und'][0]['value'] ?>
+                <div class="">
+                  <h3><strong><?= $node->title ?></strong></h3>
+                  <p><?= $node->field_mo_ta['und'][0]['value'] ?></p>
+
+                </div>
               </div>
               <div class="card-footer">
                 <span class="text-danger">* Biểu thị câu hỏi bắt buộc</span>
@@ -62,8 +99,10 @@
                       <input class="form-check-input" type="radio" name="dap_an[]" id="inlineRadio2" value="Sai"/>
                       <label class="form-check-label" for="inlineRadio2">Sai</label>
                     </div>
-                  <?php else: ?>
+                  <?php elseif ($cauHoi->type == 0): ?>
                     <input placeholder="Câu trả lời..." name="dap_an[]" class="form-control">
+                  <?php else: ?>
+                    <input placeholder="01/01/2024" name="dap_an[]" class="form-control flatpickr-basic">
                   <?php endif; ?>
                 </div>
               </div>

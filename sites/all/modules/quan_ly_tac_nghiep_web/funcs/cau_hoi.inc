@@ -132,6 +132,7 @@ function getBlockCauHoi($data)
                         <select name="type[]" class="form-select ">
                           <option ' . ($cauHoi->type == "1" ? "selected" : "") . ' value="1">Đúng/Sai</option>
                           <option ' . ($cauHoi->type == "0" ? "selected" : "") . ' value="0">Văn bản</option>
+                          <option ' . ($cauHoi->type == "2" ? "selected" : "") . ' value="2">Thời gian</option>
                         </select>
                       </div>
                     </div>
@@ -183,8 +184,8 @@ function getListKetQuaKhaoSat($nodes)
       getValueField('index', '', $index),
       getValueField('field_ho_ten', '', $khachHang->field_ho_ten['und'][0]['value']),
       getValueField('field_email', '', $khachHang->mail),
-      getValueField('field_action_eye', '', '<a class="text-primary btn-xem-khao-sat"><i data-feather="eye"></i></a>'),
-      getValueField('field_action_edit', '', '<a class="text-primary btn-sua-khao-sat"><i data-feather="edit"></i></a>'),
+      getValueField('field_action_eye', '', '<a target="_blank" class="text-primary btn-xem-khao-sat" href="/khao-sat?nid='.$node->field_khao_sat_id['und'][0]['target_id'].'&uid='.$khachHang->uid.'"><i data-feather="eye"></i></a>'),
+//      getValueField('field_action_edit', '', '<a class="text-primary btn-sua-khao-sat"><i data-feather="edit"></i></a>'),
     ]);
   }
   return [
