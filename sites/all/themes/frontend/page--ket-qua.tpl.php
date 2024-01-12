@@ -109,7 +109,7 @@ global $user;
           <li class="scrollable-container media-list">
             <?php
             module_load_include('inc', 'webform', 'includes/webform.submissions');
-            $submissions = webform_get_submissions(array('nid'=> 26686), null,5);
+            $submissions = webform_get_submissions(array('nid'=> 26686), array('submitted'=>SORT_DESC),5);
             array_multisort($submissions,SORT_DESC);
             foreach ($submissions as $submission){
               print ' <a class="d-flex" href="/ket-qua">

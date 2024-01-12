@@ -131,6 +131,24 @@ function quan_ly_tac_nghiep_web_menu()
     'page arguments' => array('he_thong_permission'),
     'access arguments' => array('he_thong_permission'),
   );
+  $items['ket-qua'] = [
+    'title' => 'Danh sách liên hệ',
+    'page callback' => 'ket_qua',
+    'page arguments' => array('ket_qua_permission'),
+    'access arguments' => array('ket_qua_permission'),
+  ];
+  $items['lien-he'] = [
+    'title' => 'Liên hệ',
+    'page callback' => 'lien_he',
+    'page arguments' => array('lien_he_permission'),
+    'access arguments' => array('lien_he_permission'),
+  ];
+  $items['gioi-thieu'] = [
+    'title' => 'Giới thiệu',
+    'page callback' => 'gioi_thieu',
+    'page arguments' => array('gioi_thieu_permission'),
+    'access arguments' => array('gioi_thieu_permission'),
+  ];
   $items['khao-sat'] = array( //this creates a URL that will call this form at "examples/form-example"
     'title' => 'Khảo sát',
     'page callback' => 'khao_sat',
@@ -230,6 +248,12 @@ function quan_ly_tac_nghiep_web_permission()
     'he_thong_permission' => [
       'title' => 'Hệ thống',
     ],
+    'lien_he_permission' => [
+      'title' => 'Liên hệ',
+    ],
+    'ket_qua_permission' => [
+      'title' => 'Danh sách kết quả',
+    ],
     'khao_sat_permission' => [
       'title' => 'Khảo sát',
     ],
@@ -250,6 +274,9 @@ function quan_ly_tac_nghiep_web_permission()
     ],
     'save_khao_sat_permission' => [
       'title' => 'Save khảo sát',
+    ],
+    'gioi_thieu_permission' => [
+      'title' => 'Giới thiệu',
     ],
   ];
 }
@@ -305,6 +332,7 @@ function ket_qua() {
     '#type' => 'markup',
   ];
 }
+
 function getCountry(){
   $curl = curl_init();
 

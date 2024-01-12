@@ -170,7 +170,7 @@ global $user;
 <div class="app-content content ">
   <div class="card">
     <div class="card-body">
-      <?= node_load(26684)->field_ghi_chu['und'][0]['value']?>
+      <?= node_load(26808)->field_ghi_chu['und'][0]['value']?>
     </div>
   </div>
 </div>
