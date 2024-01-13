@@ -95,24 +95,29 @@ global $user;
       </ul>
     </div>
     <ul class="nav navbar-nav align-items-center ms-auto">
-      <li class="nav-item dropdown dropdown-notification me-25">
-        <a class="nav-link" href="#" data-bs-toggle="dropdown">
-          <i class="ficon" data-feather="bell"></i>
-          <span class="badge rounded-pill bg-danger badge-up">5</span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
-          <li class="dropdown-menu-header">
-            <div class="dropdown-header d-flex">
-              <h4 class="notification-title mb-0 me-auto">Thông báo</h4>
-            </div>
-          </li>
-          <li class="scrollable-container media-list">
-            <?php
-            module_load_include('inc', 'webform', 'includes/webform.submissions');
-            $submissions = webform_get_submissions(array('nid'=> 26686), array('submitted'=>SORT_DESC),5);
-            array_multisort($submissions,SORT_DESC);
-            foreach ($submissions as $submission){
-              print ' <a class="d-flex" href="/ket-qua">
+
+      <?php
+      global $user;
+      if (!isset($user->roles[8])&&$user->uid !== 0):?>
+        <li class="nav-item dropdown dropdown-notification me-25">
+          <a class="nav-link" href="#" data-bs-toggle="dropdown">
+            <i class="ficon" data-feather="bell"></i>
+            <span class="badge rounded-pill bg-danger badge-up">5</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
+            <li class="dropdown-menu-header">
+              <div class="dropdown-header d-flex">
+                <h4 class="notification-title mb-0 me-auto">Thông báo</h4>
+                <div class="badge rounded-pill badge-light-primary">6 Thông báo mới</div>
+              </div>
+            </li>
+            <li class="scrollable-container media-list">
+              <?php
+              module_load_include('inc', 'webform', 'includes/webform.submissions');
+              $submissions = webform_get_submissions(array('nid'=> 26686), null,5);
+              array_multisort($submissions,SORT_DESC);
+              foreach ($submissions as $submission){
+                print ' <a class="d-flex" href="/ket-qua">
             <div class="list-item d-flex align-items-start">
               <div class="me-1">
                 <div class="avatar bg-light-warning">
@@ -128,44 +133,57 @@ global $user;
               </div>
             </div>
           </a>';
-            }
-            ?>
-          </li>
-
-          <li class="dropdown-menu-footer"><a class="btn btn-primary w-100" href="/ket-qua">Xem tất cả</a></li>
-        </ul>
-      </li>
+              }
+              ?>
+            </li>
+            <li class="dropdown-menu-footer"><a class="btn btn-primary w-100" href="/ket-qua">Xem tất cả</a></li>
+          </ul>
+        </li>
+      <?php endif;?>
       <li class="nav-item dropdown dropdown-user">
-        <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <div class="user-nav d-sm-flex d-none">
-            <span class="user-name fw-bolder"><?=$user->uid == 0 ? 'Khách hàng' : $user->name; ?></span>
-            <span class="user-status"><?=$user->uid == 0 ? '' : array_values($user->roles)[0]?></span>
+        <a class="nav-link dropdown-toggle dropdown-user-link"
+           id="dropdown-user" href="#" data-bs-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          <div class="user-nav d-sm-flex">
+            <span class="user-name fw-bolder"><?= $user->name == "" ? "Khách hàng" : $user->name; ?></span>
+            <span
+              class="user-status"><?= array_values($user->roles)[0] ?></span>
           </div>
           <span class="avatar">
-            <img class="round" src="<?= $node->field_ghi_chu['und'][0]['value'] ?>" alt="avatar" height="40" width="40">
+            <img class="round"
+                 src="<?= $node->field_ghi_chu['und'][0]['value'] ?>"
+                 alt="avatar" height="40" width="40">
             <span class="avatar-status-online"></span>
           </span>
         </a>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
+        <div class="dropdown-menu dropdown-menu-end w-auto" aria-labelledby="dropdown-user">
           <?php
           global $user;
-          if (!isset($user->roles[8])&&$user->uid !== 0):
+          if (!isset($user->roles[8]) && $user->uid !== 0):
             ?>
             <a class="dropdown-item" href="/ho-so-ca-nhan">
               <i class="me-50" data-feather="user"></i> Hồ sơ cá nhân
             </a>
-          <?php endif;?>
+          <?php endif; ?>
           <div class="dropdown-divider"></div>
-          <?php if ($user->uid==0):?>
-            <a class="dropdown-item" href="<?=url('user/login')?>">
+          <?php if ($user->uid == 0): ?>
+            <a class="dropdown-item" href="<?= url('user/login') ?>">
               <i class="me-50" data-feather="user"></i> Đăng nhập
             </a>
-          <?php else:?>
-            <a class="dropdown-item" href="<?=url('user/logout')?>">
+          <?php else: ?>
+            <?php $user = user_load($user->uid) ?>
+            <a class="dropdown-item" href="#">
+              <i class="me-50" data-feather="user"></i> <?= $user->field_ho_ten['und'][0]['value'] ?>
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="me-50" data-feather="mail"></i> <?= $user->mail ?>
+            </a>
+            <a class="dropdown-item" href="<?= url('user/logout') ?>">
               <i class="me-50" data-feather="power"></i> Đăng xuất
             </a>
-          <?php endif;?>
+          <?php endif; ?>
         </div>
+
       </li>
     </ul>
   </div>
@@ -215,45 +233,48 @@ global $user;
     <div class="content-header row">
     </div>
     <div class="content-body">
-      <div class="hidden">
+      <div class="">
         <?php print $messages; ?>
       </div>
       <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
       <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-      <?php if($page['content']) print render($page['content']); ?>
-      <div class="card">
-        <table class="table table-bordered table-striped">
-          <thead>
-          <tr class="text-nowrap">
-            <th width="1%">STT</th>
-            <th width="1%">Thời gian</th>
-            <th width="1%">Họ tên</th>
-            <th width="1%">Điện thoại</th>
-            <th width="1%">Email</th>
-            <th>Nội dung</th>
-          </tr>
-          </thead>
-          <tbody>
-          <?php
-          module_load_include('inc', 'webform', 'includes/webform.submissions');
-          $submissions = webform_get_submissions(array('nid'=> 26686),null,20);
-          array_multisort($submissions,SORT_DESC);
-          $stt = 0;
-          ?>
-          <?php  foreach ($submissions as $submission):?>
-            <tr>
-              <td class="text-nowrap"><?= ++$stt?></td>
-              <td class="text-nowrap"><?=date("d/m/y H:i",$submission->submitted)?></td>
-              <td class="text-nowrap"><?=$submission->data[1][0]?></td>
-              <td class="text-nowrap"><?=$submission->data[2][0]?></td>
-              <td class="text-nowrap"><?=$submission->data[3][0]?></td>
-              <td><?=$submission->data[4][0]?></td>
+      <?php if (user_access('ket_qua_permission')):?>
+        <div class="card">
+          <table class="table table-bordered table-striped">
+            <thead>
+            <tr class="text-nowrap">
+              <th width="1%">STT</th>
+              <th width="1%">Thời gian</th>
+              <th width="1%">Họ tên</th>
+              <th width="1%">Điện thoại</th>
+              <th width="1%">Email</th>
+              <th>Nội dung</th>
             </tr>
-          <?php endforeach;?>
+            </thead>
+            <tbody>
+            <?php
+            module_load_include('inc', 'webform', 'includes/webform.submissions');
+            $submissions = webform_get_submissions(array('nid'=> 26686),null,20);
+            array_multisort($submissions,SORT_DESC);
+            $stt = 0;
+            ?>
+            <?php  foreach ($submissions as $submission):?>
+              <tr>
+                <td class="text-nowrap"><?= ++$stt?></td>
+                <td class="text-nowrap"><?=date("d/m/y H:i",$submission->submitted)?></td>
+                <td class="text-nowrap"><?=$submission->data[1][0]?></td>
+                <td class="text-nowrap"><?=$submission->data[2][0]?></td>
+                <td class="text-nowrap"><?=$submission->data[3][0]?></td>
+                <td><?=$submission->data[4][0]?></td>
+              </tr>
+            <?php endforeach;?>
 
-          </tbody>
-        </table>
-      </div>
+            </tbody>
+          </table>
+        </div>
+      <?php else:?>
+        <?php header("location: /error");?>
+      <?php endif;?>
 
     </div>
   </div>

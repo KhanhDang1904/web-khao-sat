@@ -270,3 +270,192 @@ td img {
   border-radius: 50%!important;
 }
 
+.hotline-chat {
+  position: fixed;
+  bottom: -12px;
+  right: -9px;
+  z-index: 99;
+}
+.hotlinefix {
+  position: fixed;
+  bottom: 94px;
+  right: 16px;
+  z-index: 99;
+}
+.circle-hotline-chat {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #0080FF;
+  -webkit-transition: height .25s ease, width .25s ease;
+  transition: height .25s ease, width .25s ease;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  margin-top: 3px;
+  margin-left: -3px;
+}
+.circle-hotline-chat span {
+  margin: 12px;
+  display: inline-block;
+}
+.circle-hotline-chat:before,
+.circle-hotline-chat:after {
+  content:'';
+  display:block;
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  border-radius:50%;
+  border: 1px solid #0080FF;
+}
+.circle-hotline-chat:before {
+  -webkit-animation: ripple1 2s linear infinite;
+  animation: ripple1 2s linear infinite;
+}
+.circle-hotline-chat:after {
+  -webkit-animation: ripple1 2s linear 1s infinite;
+  animation: ripple1 2s linear 1s infinite;
+}
+.circle-hotline-chat:hover:before,
+.circle-hotline-chat:hover:after {
+  -webkit-animation: none;
+  animation: none;
+}
+
+@-webkit-keyframes ripple1{
+  0% {-webkit-transform:scale(1); }
+  75% {-webkit-transform:scale(1.75); opacity:1;}
+  100% {-webkit-transform:scale(2); opacity:0;}
+}
+
+@keyframes ripple1{
+  0% {transform:scale(1); }
+  75% {transform:scale(1.75); opacity:1;}
+  100% {transform:scale(2); opacity:0;}
+}
+.circle-hotline-chat img {
+  width: 50px;
+  max-width: 100%;
+  height: auto;
+}
+.hotline-chat .phone {
+  font-size: 16px;
+  font-weight: bold;
+  background: #F00;
+  color: white;
+  padding: 1px 30px 1px 75px;
+  border-radius: 39px;
+  left: -25px;
+  top: -25px;
+  position: absolute;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+}
+#home-chat .hotline-chat .phone p {
+  line-height: 15px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+#home-chat .hotline-chat .phone p a{
+  font-style: inherit;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.circle-hotline {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #F00;
+  -webkit-transition: height .25s ease, width .25s ease;
+  transition: height .25s ease, width .25s ease;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  margin-top: -3px;
+  margin-left: -33px;
+}
+.circle-hotline span {
+  margin: 12px;
+  display: inline-block;
+}
+.circle-hotline:before,
+.circle-hotline:after {
+  content:'';
+  display:block;
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  border-radius:50%;
+  border: 1px solid #F00;
+}
+.circle-hotline:before {
+  -webkit-animation: ripple1 2s linear infinite;
+  animation: ripple1 2s linear infinite;
+}
+.circle-hotline:after {
+  -webkit-animation: ripple1 2s linear 1s infinite;
+  animation: ripple1 2s linear 1s infinite;
+}
+.circle-hotline:hover:before,
+.circle-hotline:hover:after {
+  -webkit-animation: none;
+  animation: none;
+}
+
+@-webkit-keyframes ripple1{
+  0% {-webkit-transform:scale(1); }
+  75% {-webkit-transform:scale(1.75); opacity:1;}
+  100% {-webkit-transform:scale(2); opacity:0;}
+}
+@keyframes ripple1{
+  0% {transform:scale(1); }
+  75% {transform:scale(1.75); opacity:1;}
+  100% {transform:scale(2); opacity:0;}
+}
+.circle-hotline img {
+  width: 50px;
+  max-width: 100%;
+  height: auto;
+}
+.hotlinefix .phone {
+  font-size: 14px;
+  font-weight: bold;
+  background: #FFF;
+  color: #F00;
+  padding: 0px 70px 1px 35px;
+  border-radius: 39px;
+  left: -197px;
+  top: -29px;
+  position: absolute;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+}
+.hotlinefix .phone a {
+  display: block;
+  /* margin-bottom: 20px; */
+  padding: 10px 0;
+  font-size: 14pt;
+}
+.hotlinefix .phone p {
+  line-height: 8px;
+  margin-top: 6px;
+  margin-bottom: 4px;
+}
+.hotlinefix .phone p a{
+  font-style: inherit;
+  color: #F00;
+  text-shadow: none;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.hotlinefix span.phone a {
+  color: #f00;
+  font-weight: 600;
+}

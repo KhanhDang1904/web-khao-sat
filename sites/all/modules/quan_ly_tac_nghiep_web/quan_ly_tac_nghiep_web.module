@@ -149,6 +149,12 @@ function quan_ly_tac_nghiep_web_menu()
     'page arguments' => array('gioi_thieu_permission'),
     'access arguments' => array('gioi_thieu_permission'),
   ];
+  $items['error'] = [
+    'title' => 'Page not found',
+    'page callback' => 'error',
+    'page arguments' => array('error_permission'),
+    'access arguments' => array('error_permission'),
+  ];
   $items['khao-sat'] = array( //this creates a URL that will call this form at "examples/form-example"
     'title' => 'Khảo sát',
     'page callback' => 'khao_sat',
@@ -278,6 +284,9 @@ function quan_ly_tac_nghiep_web_permission()
     'gioi_thieu_permission' => [
       'title' => 'Giới thiệu',
     ],
+    'error_permission' => [
+      'title' => 'Page not found',
+    ],
   ];
 }
 
@@ -318,6 +327,11 @@ function lien_he() {
   ];
 }
 function chi_tiet_san_pham() {
+  return [
+    '#type' => 'markup',
+  ];
+}
+function error() {
   return [
     '#type' => 'markup',
   ];

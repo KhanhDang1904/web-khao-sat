@@ -151,7 +151,7 @@ global $user;
             <span class="avatar-status-online"></span>
           </span>
         </a>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
+        <div class="dropdown-menu dropdown-menu-end w-auto" aria-labelledby="dropdown-user">
           <?php
           global $user;
           if (!isset($user->roles[8])&&$user->uid !== 0):

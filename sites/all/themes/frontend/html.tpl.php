@@ -59,7 +59,7 @@
 <?php
   $data_col = 'content-left-sidebar';
   $class= 'horizontal-layout horizontal-menu  navbar-floating footer-static  ';
-  if(current_path() == 'user/login'||current_path() == 'user/register'){
+  if(current_path() == 'user/login'||current_path() == 'user/register'||current_path() == 'user/password'||current_path() == 'user/error'){
     $data_col = 'blank-page';
     $class = 'horizontal-layout horizontal-menu blank-page navbar-floating footer-static';
   }else if(current_path() == 'node'){
