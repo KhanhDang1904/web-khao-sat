@@ -38,7 +38,7 @@ $(function () {
     });
   }
 
-  $(document).on('click', '#btn-dang-nhap', function (e){
+  $(document).on('click', '#btn-dang-nhap', function (e) {
     e.preventDefault();
     var $username = $("#login-email").val(),
       $paw = $("#login-password").val();
@@ -46,4 +46,14 @@ $(function () {
     $("#edit-pass").val($paw);
     $("#user-login").submit();
   })
+  $(document).keyup(function (e) {
+    var code = (e.keyCode ? e.keyCode : e.which);
+    if (code == 32 || code == 13 || code == 188 || code == 186) {
+      var $username = $("#login-email").val(),
+        $paw = $("#login-password").val();
+      $("#edit-name").val($username);
+      $("#edit-pass").val($paw);
+      $("#user-login").submit();
+    }
+  });
 });

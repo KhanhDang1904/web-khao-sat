@@ -31,10 +31,10 @@
               <div class="">
                 <?php print $messages; ?>
               </div>
-              <form class="auth-forgot-password-form mt-2" action="" method="POST">
+              <form class="auth-forgot-password-form mt-2" method="POST">
                 <div class="mb-1">
                   <label class="form-label" for="forgot-password-email">Email</label>
-                  <input class="form-control" id="forgot-password-email" type="text" name="forgot-password-email" placeholder="john@example.com" aria-describedby="forgot-password-email" autofocus="" tabindex="1" />
+                  <input class="form-control" id="forgot-password-email" type="text"  placeholder="john@example.com"  />
                 </div>
                 <a class="btn btn-primary w-100 btn-forgot-pass" tabindex="2">Gửi</a>
               </form>

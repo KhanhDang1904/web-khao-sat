@@ -6,28 +6,40 @@
   Author: PIXINVENT
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
-$(document).ready(function (){
-  $(document).on("click",'.btn-forgot-pass',function (){
-    if ($("#forgot-password-email").val()==""){
+$(document).ready(function () {
+  $(document).on("click", '.btn-forgot-pass', function () {
+    if ($("#forgot-password-email").val() == "") {
       toastError("Vui lòng nhập email")
       return false
     }
-
-    if (!validateEmail($("#forgot-password-email").val())){
+    if (!validateEmail($("#forgot-password-email").val())) {
       toastError("Email không đúng định dạng")
       return false
     }
     $("#edit-name").val($("#forgot-password-email").val())
-    getToastSuccess("Vui lòng kiểm tra email "+$("#forgot-password-email").val())
-    setTimeout(function (){
-      $("#edit-submit").click()
-    },500)
+    $("#edit-submit").click()
   })
 })
+$(document).keyup(function (e) {
+  var code = (e.keyCode ? e.keyCode : e.which);
+  if (code == 32 || code == 13 || code == 188 || code == 186) {
+    if ($("#forgot-password-email").val() == "") {
+      toastError("Vui lòng nhập email")
+      return false
+    } else if (!validateEmail($("#forgot-password-email").val())) {
+      toastError("Email không đúng định dạng")
+      return false
+    }
+    $("#edit-name").val($("#forgot-password-email").val())
+    $("#edit-submit").click()
+  }
+});
+
 function validateEmail($email) {
   var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-  return emailReg.test( $email );
+  return emailReg.test($email);
 }
+
 $(function () {
   'use strict';
 
