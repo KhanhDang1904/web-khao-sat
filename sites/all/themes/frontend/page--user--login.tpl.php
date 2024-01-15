@@ -74,6 +74,7 @@
 <div class="hidden">
   <?php if ($page['content']) print render($page['content']) ?>
 </div>
+
 <!-- BEGIN: Content-->
 <div class="app-content content ">
   <div class="content-overlay"></div>
@@ -85,14 +86,18 @@
       <div class="auth-wrapper auth-cover">
         <div class="auth-inner row m-0">
           <!-- Brand logo-->
-          <a class="brand-logo" href="<?= $front_page ?>">
-            <?php $node = node_load(26604); ?>
-            <span>
+          <div class="brand-logo ">
+            <a class="d-flex" href="<?= $front_page ?>">
+              <?php $node = node_load(26604); ?>
+              <span>
             <img src="https://<?= $_SERVER['SERVER_NAME'] ?>/<?= $node->field_ghi_chu['und'][0]['value'] ?>"/>
           </span>
-            <h2 class="brand-text text-primary ms-1">CSTAKA </h2>
-          </a>
-          <!-- /Brand logo-->
+              <h2 class="brand-text text-primary ms-1">CSTAKA  </h2>
+            </a>
+            <a href="/gioi-thieu"><h2 class="brand-text text-primary ms-2">GIỚI THIỆU</h2></a>
+            <a href="/lien-he"><h2 class="brand-text text-primary ms-2">LIÊN HỆ</h2></a>
+          </div>
+                    <!-- /Brand logo-->
           <!-- Left Text-->
           <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
             <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
@@ -119,6 +124,9 @@
                 <div class="mb-1">
                   <div class="d-flex justify-content-between">
                     <label class="form-label" for="login-password">Mật khẩu</label>
+                    <a href="<?=url('user/password')?>">
+                      <small>Quên mật khẩu?</small>
+                    </a>
                   </div>
                   <div class="input-group input-group-merge form-password-toggle">
                     <input class="form-control form-control-merge" id="login-password" type="password"

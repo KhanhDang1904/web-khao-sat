@@ -6,6 +6,29 @@
   Author: PIXINVENT
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
+$(document).ready(function (){
+  $(document).on("click",'.btn-reset-pass',function (){
+    if ($("#reset-password-new").val()==""){
+      toastError("Vui lòng nhập mật khẩu mới")
+      return false
+    }
+    if ($("#reset-password-new").val().length<6){
+      toastError("Mật khẩu mới tối thiểu 6 kí tự")
+      return false
+    }
+    if ($("#reset-password-confirm").val()==""){
+      toastError("Vui lòng nhập xác nhận mật khẩu")
+      return false
+    }
+    if ($("#reset-password-confirm").val()!==$("#reset-password-new").val()){
+      toastError("Nhập lại mật khẩu không trùng khớp")
+      return false
+    }
+    $("#edit-pass-pass1").val($("#reset-password-new").val())
+    $("#edit-pass-pass2").val($("#reset-password-confirm").val())
+    $("#edit-submit").click()
+  })
+})
 
 $(function () {
   'use strict';

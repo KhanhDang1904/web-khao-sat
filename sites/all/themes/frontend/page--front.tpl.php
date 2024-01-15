@@ -162,6 +162,7 @@ global $user;
         <div class="dropdown-menu dropdown-menu-end w-auto" aria-labelledby="dropdown-user">
           <?php
           global $user;
+          $user= user_load($user->uid);
           if (!isset($user->roles[8]) && $user->uid !== 0):
             ?>
             <a class="dropdown-item" href="/ho-so-ca-nhan">
@@ -176,7 +177,7 @@ global $user;
           <?php else: ?>
             <?php $user = user_load($user->uid) ?>
             <a class="dropdown-item" href="#">
-              <i class="me-50" data-feather="user"></i> <?= $user->field_ho_ten['und'][0]['value'] ?>
+              <i class="me-50" data-feather="user"></i> <?= isset($user->field_ho_ten['und'])?$user->field_ho_ten['und'][0]['value']:$user->name ?>
             </a>
             <a class="dropdown-item" href="#">
               <i class="me-50" data-feather="mail"></i> <?= $user->mail ?>

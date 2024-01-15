@@ -26,8 +26,19 @@
           <!-- verify email v2-->
           <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
             <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-              <h2 class="card-title fw-bolder mb-1">Kích hoạt tài khoản</h2>
-              <p class="card-text mb-2">Vui lòng kiểm tra email hoặc liên hệ với quản trị viên để được hỗ trợ</p><a class="btn btn-primary w-100" href="/node">Quay lại</a>
+              <h2 class="card-title fw-bold mb-1">Quên mật khẩu? 🔒</h2>
+              <p class="card-text mb-2">Nhập email của bạn và chúng tôi sẽ gửi cho bạn hướng dẫn để đặt lại mật khẩu của bạn</p>
+              <div class="">
+                <?php print $messages; ?>
+              </div>
+              <form class="auth-forgot-password-form mt-2" action="" method="POST">
+                <div class="mb-1">
+                  <label class="form-label" for="forgot-password-email">Email</label>
+                  <input class="form-control" id="forgot-password-email" type="text" name="forgot-password-email" placeholder="john@example.com" aria-describedby="forgot-password-email" autofocus="" tabindex="1" />
+                </div>
+                <a class="btn btn-primary w-100 btn-forgot-pass" tabindex="2">Gửi</a>
+              </form>
+              <p class="text-center mt-2"><a href="/user/login"><i data-feather="chevron-left"></i> Quay lại đăng nhập</a></p>
             </div>
           </div>
           <!-- verify email-->
