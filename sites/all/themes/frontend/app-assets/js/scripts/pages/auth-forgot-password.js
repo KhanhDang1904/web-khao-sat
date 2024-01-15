@@ -18,7 +18,10 @@ $(document).ready(function (){
       return false
     }
     $("#edit-name").val($("#forgot-password-email").val())
-    $("#edit-submit").click()
+    getToastSuccess("Vui lòng kiểm tra email "+$("#forgot-password-email").val())
+    setTimeout(function (){
+      $("#edit-submit").click()
+    },500)
   })
 })
 function validateEmail($email) {
