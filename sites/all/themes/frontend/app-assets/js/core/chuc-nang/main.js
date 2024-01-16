@@ -915,3 +915,4 @@ function loadIcon() {
     });
   }
 }
+

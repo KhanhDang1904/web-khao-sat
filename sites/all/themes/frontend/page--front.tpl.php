@@ -98,9 +98,12 @@ global $user;
       </ul>
     </div>
     <ul class="nav navbar-nav align-items-center ms-auto">
+      <li class="">
+        <div id="google_translate_element"></div>
+      </li>
       <?php
       global $user;
-      if (!isset($user->roles[8])&&$user->uid !== 0):
+      if (!isset($user->roles[8]) && $user->uid !== 0):
         ?>
         <li class="nav-item dropdown dropdown-notification me-25">
           <a class="nav-link" href="#" data-bs-toggle="dropdown">
@@ -117,9 +120,9 @@ global $user;
             <li class="scrollable-container media-list">
               <?php
               module_load_include('inc', 'webform', 'includes/webform.submissions');
-              $submissions = webform_get_submissions(array('nid'=> 26686), null,5);
-              array_multisort($submissions,SORT_DESC);
-              foreach ($submissions as $submission){
+              $submissions = webform_get_submissions(array('nid' => 26686), null, 5);
+              array_multisort($submissions, SORT_DESC);
+              foreach ($submissions as $submission) {
                 print ' <a class="d-flex" href="/ket-qua">
             <div class="list-item d-flex align-items-start">
               <div class="me-1">
@@ -129,10 +132,10 @@ global $user;
               </div>
               <div class="list-item-body flex-grow-1">
                 <p class="media-heading">
-                  <span class="fw-bolder">'.$submission->data[1][0].' </span>
+                  <span class="fw-bolder">' . $submission->data[1][0] . ' </span>
                 </p>
-                <small class="notification-text">'.date("d/m/y H:i",$submission->submitted).'</small>
-                <small class="notification-text text-over" style="margin-bottom:0 ">'.$submission->data[1][0].'</small>
+                <small class="notification-text">' . date("d/m/y H:i", $submission->submitted) . '</small>
+                <small class="notification-text text-over" style="margin-bottom:0 ">' . $submission->data[1][0] . '</small>
               </div>
             </div>
           </a>';
@@ -142,7 +145,7 @@ global $user;
             <li class="dropdown-menu-footer"><a class="btn btn-primary w-100" href="/ket-qua">Xem tất cả</a></li>
           </ul>
         </li>
-      <?php endif;?>
+      <?php endif; ?>
       <li class="nav-item dropdown dropdown-user">
         <a class="nav-link dropdown-toggle dropdown-user-link"
            id="dropdown-user" href="#" data-bs-toggle="dropdown"
@@ -162,7 +165,7 @@ global $user;
         <div class="dropdown-menu dropdown-menu-end w-auto" aria-labelledby="dropdown-user">
           <?php
           global $user;
-          $user= user_load($user->uid);
+          $user = user_load($user->uid);
           if (!isset($user->roles[8]) && $user->uid !== 0):
             ?>
             <a class="dropdown-item" href="/ho-so-ca-nhan">
@@ -177,7 +180,8 @@ global $user;
           <?php else: ?>
             <?php $user = user_load($user->uid) ?>
             <a class="dropdown-item" href="#">
-              <i class="me-50" data-feather="user"></i> <?= isset($user->field_ho_ten['und'])?$user->field_ho_ten['und'][0]['value']:$user->name ?>
+              <i class="me-50"
+                 data-feather="user"></i> <?= isset($user->field_ho_ten['und']) ? $user->field_ho_ten['und'][0]['value'] : $user->name ?>
             </a>
             <a class="dropdown-item" href="#">
               <i class="me-50" data-feather="mail"></i> <?= $user->mail ?>
@@ -293,13 +297,13 @@ global $user;
                          aria-labelledby="headingMarginOne"
                          data-bs-parent="#accordionMargin">
                       <div class="accordion-body text-center">
-                        <?php if ($check == FALSE):?>
-                        <p>Bắt đầu khảo sát : <?= $item->title ?></p>
-                        <a class="btn btn-primary" href="/khao-sat?nid=<?= $item->nid ?>">Bắt đầu</a>
-                        <?php else:?>
-                          <p> Đã gửi: <?= date("H:i d/m/Y",$check->created) ?></p>
+                        <?php if ($check == FALSE): ?>
+                          <p>Bắt đầu khảo sát : <?= $item->title ?></p>
+                          <a class="btn btn-primary" href="/khao-sat?nid=<?= $item->nid ?>">Bắt đầu</a>
+                        <?php else: ?>
+                          <p> Đã gửi: <?= date("H:i d/m/Y", $check->created) ?></p>
                           <a class="btn btn-primary" href="/khao-sat?nid=<?= $item->nid ?>">Xem kết quả</a>
-                        <?php endif;?>
+                        <?php endif; ?>
                       </div>
                     </div>
                   </div>
@@ -331,17 +335,18 @@ global $user;
 
 <!-- Your SDK code -->
 <script>
-  window.fbAsyncInit = function() {
+  window.fbAsyncInit = function () {
     FB.init({
-      xfbml            : true,
-      version          : 'v18.0'
+      xfbml: true,
+      version: 'v18.0'
     });
   };
 
-  (function(d, s, id) {
+  (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
+    js = d.createElement(s);
+    js.id = id;
     js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));

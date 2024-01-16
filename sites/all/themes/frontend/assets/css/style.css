@@ -459,3 +459,18 @@ td img {
   color: #f00;
   font-weight: 600;
 }
+.skiptranslate{
+  display: none!important;
+}
+.skiptranslate.goog-te-gadget{
+  display: block!important;
+}
+body{
+  top: unset!important;
+}
+/*.skiptranslate span{*/
+/*  display: none!important;*/
+/*}*/
+.skiptranslate:nth-child(2){
+  display: none;
+}

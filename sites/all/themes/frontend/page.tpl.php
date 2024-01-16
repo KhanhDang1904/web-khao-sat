@@ -95,6 +95,9 @@ global $user;
       </ul>
     </div>
     <ul class="nav navbar-nav align-items-center ms-auto">
+      <li>
+        <div id="google_translate_element"></div>
+      </li>
       <?php
       global $user;
       if (!isset($user->roles[8])&&$user->uid !== 0):
